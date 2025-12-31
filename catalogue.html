@@ -24,16 +24,20 @@ body{margin:0;font-family:Inter;background:#000;color:#fff}
 
 /* CONTAINER */
 .container{max-width:460px;margin:auto;padding:70px 16px 40px}
+
 h2{font-size:20px;margin:18px 0}
+
 .sub-tag{
-  display:inline-block;background:#1f1f1f;
+  display:inline-block;
+background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+  color:#fff;border:none;
   padding:8px 14px;border-radius:20px;
   font-size:13px;margin-bottom:12px
 }
 
 /* CARD */
 .card{
-  background:#151515;border-radius:16px;
+  background:#3a3a3a;border-radius:16px;
   padding:14px;margin-bottom:22px
 }
 .variant-title{font-weight:600;margin-bottom:6px}
@@ -92,6 +96,29 @@ select{
   font-size:18px;box-shadow:0 8px 20px rgba(0,0,0,.4);
   z-index:9999;cursor:pointer
 }
+/* IMAGE ZOOM POPUP */
+#imgPopup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+}
+#imgPopup img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:14px;
+}
+#closePopup{
+  position:absolute;
+  top:18px;
+  right:22px;
+  font-size:32px;
+  color:#fff;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -113,7 +140,8 @@ select{
 <div class="card">
   <div class="variant-title">White Shadow LED Name Plate</div>
   <div class="images">
-    <img src="images/ws1.jpg"><img src="images/ws2.jpg"><img src="images/ws3.jpg">
+    <img src="images/ws1.jpg"
+onclick="openImage(this)"><img src="images/ws2.jpg"onclick="openImage(this)"><img src="images/ws3.jpg"onclick="openImage(this)">
   </div>
 
   <label>Size</label>
@@ -412,6 +440,11 @@ document.querySelectorAll(".size-select").forEach(sel=>{
     priceTable[key][sel.value];
 });
 </script>
+<!-- IMAGE ZOOM POPUP -->
+<div id="imgPopup" style="display:none;">
+  <span id="closePopup">&times;</span>
+  <img id="popupImg">
+</div>
 
 </body>
 </html>
