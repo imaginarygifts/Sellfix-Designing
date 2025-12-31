@@ -4,54 +4,22 @@
 <meta charset="UTF-8">
 <title>SellFix Designing | Catalogue</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
 <style>
-body{
-  margin:0;
-  font-family:'Inter',sans-serif;
-  background:#000;
-  color:#fff;
-}
-.container{
-  max-width:430px;
-  margin:auto;
-  padding:22px 16px 40px;
-}
-h2{
-  font-size:18px;
-  margin:20px 0 10px;
-}
-.card{
-  background:#151515;
-  border-radius:16px;
-  padding:14px;
-  margin-bottom:16px;
-}
-label{
-  display:block;
-  font-size:13px;
-  margin:10px 0 4px;
-  color:#aaa;
-}
-select, input{
-  width:100%;
-  padding:10px;
-  border-radius:10px;
-  border:none;
-  outline:none;
-  font-size:14px;
-}
-.price{
-  font-size:18px;
-  font-weight:600;
-  margin-top:12px;
-}
+body{margin:0;font-family:Inter;background:#000;color:#fff}
+.container{max-width:460px;margin:auto;padding:18px}
+h2{font-size:20px;margin:20px 0 6px}
+h3{font-size:16px;margin:16px 0 8px;color:#f5c518}
+.card{background:#151515;border-radius:16px;padding:14px;margin-bottom:18px}
+.variant-title{font-size:15px;font-weight:600;margin-bottom:6px}
+.images{display:flex;gap:10px;overflow-x:auto;margin-bottom:8px}
+.images img{width:140px;height:95px;object-fit:cover;border-radius:10px}
+label{font-size:12px;color:#aaa;margin-top:8px;display:block}
+select,input{width:100%;padding:10px;border-radius:10px;border:none;margin-top:4px}
+.price{font-size:18px;font-weight:600;margin-top:10px}
 .order-btn{
-  margin-top:16px;
-  display:block;
+  margin-top:12px;
   background:#25D366;
   color:#fff;
   text-align:center;
@@ -59,6 +27,7 @@ select, input{
   border-radius:30px;
   text-decoration:none;
   font-weight:600;
+  display:block;
 }
 </style>
 </head>
@@ -66,80 +35,266 @@ select, input{
 <body>
 <div class="container">
 
-<h2>📂 Name Plate Catalogue</h2>
+<h2>🪧 Name Plates Catalogue</h2>
 
+<!-- ================= LED NAME PLATES ================= -->
+<h3>LED Name Plates</h3>
+
+<!-- 1 -->
 <div class="card">
+  <div class="variant-title">White Shadow LED Name Plate</div>
+  <div class="images">
+    <img src="images/white-shadow-1.jpg">
+    <img src="images/white-shadow-2.jpg">
+    <img src="images/white-shadow-3.jpg">
+  </div>
 
-<label>Product Type</label>
-<select id="product" onchange="updatePrice()">
-  <option value="LED Name Plate">LED Name Plate</option>
-  <option value="Acrylic Name Plate">Acrylic Name Plate</option>
-  <option value="Wooden Name Plate">Wooden Name Plate</option>
-  <option value="Resin Art Name Plate">Resin Art Name Plate</option>
-</select>
+  <label>Size</label>
+  <select onchange="updatePrice(this,'whiteShadow')">
+    <option value="">Select size</option>
+    <option>8x12</option><option>12x12</option><option>12x18</option>
+    <option>12x24</option><option>18x18</option><option>18x24</option>
+    <option>18x30</option><option>24x24</option><option>24x30</option><option>24x36</option>
+  </select>
 
-<label>Size</label>
-<select id="size" onchange="updatePrice()">
-  <option value="12x6" data-price="1500">12 x 6 inch</option>
-  <option value="18x9" data-price="2500">18 x 9 inch</option>
-  <option value="24x12" data-price="4000">24 x 12 inch</option>
-</select>
+  <label>Background Colour</label><input id="bg-whiteShadow">
+  <label>Font Colour</label><input id="font-whiteShadow">
 
-<label>Color</label>
-<select id="color">
-  <option>Warm White</option>
-  <option>Cool White</option>
-  <option>Golden</option>
-  <option>Black & White</option>
-</select>
+  <div class="price">₹ <span id="whiteShadowPrice">0</span></div>
 
-<label>Design Preference</label>
-<select id="design">
-  <option>Simple</option>
-  <option>Premium</option>
-  <option>Custom Artwork</option>
-</select>
-
-<div class="price">
-  Price: ₹<span id="price">1500</span>
+  <a class="order-btn" onclick="orderNow('White Shadow LED Name Plate','whiteShadow')">Order on WhatsApp</a>
 </div>
 
-<a class="order-btn" href="#" onclick="orderNow()">
-  🟢 Order Now on WhatsApp
-</a>
+<!-- 2 -->
+<div class="card">
+  <div class="variant-title">Shadow LED Name Plate</div>
+  <div class="images">
+    <img src="images/shadow-led-1.jpg">
+    <img src="images/shadow-led-2.jpg">
+  </div>
 
+  <label>Size</label>
+  <select onchange="updatePrice(this,'shadowLed')">
+    <option value="">Select size</option>
+    <option>8x12</option><option>12x12</option><option>12x18</option>
+    <option>12x24</option><option>18x18</option><option>18x24</option>
+    <option>18x30</option><option>24x24</option><option>24x30</option><option>24x36</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-shadowLed">
+  <label>Font Colour</label><input id="font-shadowLed">
+
+  <div class="price">₹ <span id="shadowLedPrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('Shadow LED Name Plate','shadowLed')">Order on WhatsApp</a>
+</div>
+
+<!-- 3 -->
+<div class="card">
+  <div class="variant-title">LED Letters Name Plate</div>
+  <div class="images">
+    <img src="images/led-letters-1.jpg">
+    <img src="images/led-letters-2.jpg">
+  </div>
+
+  <label>Size</label>
+  <select onchange="updatePrice(this,'ledLetters')">
+    <option value="">Select size</option>
+    <option>8x12</option><option>12x18</option><option>12x24</option>
+    <option>18x24</option><option>24x30</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-ledLetters">
+  <label>Font Colour</label><input id="font-ledLetters">
+
+  <div class="price">₹ <span id="ledLettersPrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('LED Letters Name Plate','ledLetters')">Order on WhatsApp</a>
+</div>
+
+<!-- 4 -->
+<div class="card">
+  <div class="variant-title">Cutout LED Name Plate</div>
+  <div class="images">
+    <img src="images/cutout-led-1.jpg">
+    <img src="images/cutout-led-2.jpg">
+  </div>
+
+  <label>Size</label>
+  <select onchange="updatePrice(this,'cutoutLed')">
+    <option value="">Select size</option>
+    <option>12x18</option><option>12x24</option><option>18x24</option>
+    <option>24x30</option><option>24x36</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-cutoutLed">
+  <label>Font Colour</label><input id="font-cutoutLed">
+
+  <div class="price">₹ <span id="cutoutLedPrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('Cutout LED Name Plate','cutoutLed')">Order on WhatsApp</a>
+</div>
+
+<!-- ================= ACRYLIC NAME PLATES ================= -->
+<h3>Acrylic Name Plates</h3>
+
+<div class="card">
+  <div class="variant-title">Glossy Black Acrylic Name Plate</div>
+  <div class="images">
+    <img src="images/acrylic-black-1.jpg">
+    <img src="images/acrylic-black-2.jpg">
+  </div>
+
+  <label>Size</label>
+  <select onchange="updatePrice(this,'acrylicBlack')">
+    <option value="">Select size</option>
+    <option>8x12</option><option>12x18</option><option>12x24</option>
+    <option>18x24</option><option>24x30</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-acrylicBlack">
+  <label>Font Colour</label><input id="font-acrylicBlack">
+
+  <div class="price">₹ <span id="acrylicBlackPrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('Glossy Black Acrylic Name Plate','acrylicBlack')">Order on WhatsApp</a>
+</div>
+
+<div class="card">
+  <div class="variant-title">Glossy White Acrylic Name Plate</div>
+  <div class="images">
+    <img src="images/acrylic-white-1.jpg">
+  </div>
+
+  <label>Size</label>
+  <select onchange="updatePrice(this,'acrylicWhite')">
+    <option value="">Select size</option>
+    <option>8x12</option><option>12x18</option><option>12x24</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-acrylicWhite">
+  <label>Font Colour</label><input id="font-acrylicWhite">
+
+  <div class="price">₹ <span id="acrylicWhitePrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('Glossy White Acrylic Name Plate','acrylicWhite')">Order on WhatsApp</a>
+</div>
+
+<div class="card">
+  <div class="variant-title">Wood Texture Acrylic Name Plate</div>
+  <div class="images">
+    <img src="images/acrylic-wood-1.jpg">
+  </div>
+
+  <label>Size</label>
+  <select onchange="updatePrice(this,'acrylicWood')">
+    <option value="">Select size</option>
+    <option>12x18</option><option>12x24</option><option>18x24</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-acrylicWood">
+  <label>Font Colour</label><input id="font-acrylicWood">
+
+  <div class="price">₹ <span id="acrylicWoodPrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('Wood Texture Acrylic Name Plate','acrylicWood')">Order on WhatsApp</a>
+</div>
+
+<!-- ================= RESIN NAME PLATES ================= -->
+<h3>Resin Name Plates</h3>
+
+<div class="card">
+  <div class="variant-title">Circle Resin Name Plate</div>
+  <div class="images">
+    <img src="images/resin-circle-1.jpg">
+  </div>
+
+  <label>Size</label>
+  <select onchange="updatePrice(this,'resinCircle')">
+    <option value="">Select size</option>
+    <option>12x12</option><option>18x18</option><option>24x24</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-resinCircle">
+  <label>Font Colour</label><input id="font-resinCircle">
+
+  <div class="price">₹ <span id="resinCirclePrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('Circle Resin Name Plate','resinCircle')">Order on WhatsApp</a>
+</div>
+
+<div class="card">
+  <div class="variant-title">Rectangle Resin Name Plate</div>
+  <div class="images">
+    <img src="images/resin-rect-1.jpg">
+  </div>
+
+  <label>Size</label>
+  <select onchange="updatePrice(this,'resinRect')">
+    <option value="">Select size</option>
+    <option>12x18</option><option>12x24</option><option>18x24</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-resinRect">
+  <label>Font Colour</label><input id="font-resinRect">
+
+  <div class="price">₹ <span id="resinRectPrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('Rectangle Resin Name Plate','resinRect')">Order on WhatsApp</a>
+</div>
+
+<div class="card">
+  <div class="variant-title">Agate Resin Name Plate</div>
+  <div class="images">
+    <img src="images/resin-agate-1.jpg">
+  </div>
+
+  <label>Size</label>
+  <select onchange="updatePrice(this,'resinAgate')">
+    <option value="">Select size</option>
+    <option>12x18</option><option>18x24</option><option>24x30</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-resinAgate">
+  <label>Font Colour</label><input id="font-resinAgate">
+
+  <div class="price">₹ <span id="resinAgatePrice">0</span></div>
+
+  <a class="order-btn" onclick="orderNow('Agate Resin Name Plate','resinAgate')">Order on WhatsApp</a>
 </div>
 
 </div>
 
 <script>
-function updatePrice(){
-  const size = document.getElementById("size");
-  const price = size.options[size.selectedIndex].dataset.price;
-  document.getElementById("price").innerText = price;
+const priceTable = {
+  whiteShadow:{}, shadowLed:{}, ledLetters:{}, cutoutLed:{},
+  acrylicBlack:{}, acrylicWhite:{}, acrylicWood:{},
+  resinCircle:{}, resinRect:{}, resinAgate:{}
+};
+
+function updatePrice(sel,key){
+  const size = sel.value;
+  const price = priceTable[key][size] || 0;
+  document.getElementById(key+"Price").innerText = price;
 }
 
-function orderNow(){
-  const product = document.getElementById("product").value;
-  const size = document.getElementById("size").value;
-  const color = document.getElementById("color").value;
-  const design = document.getElementById("design").value;
-  const price = document.getElementById("price").innerText;
+function orderNow(product,key){
+  const price = document.getElementById(key+"Price").innerText;
+  const bg = document.getElementById("bg-"+key).value;
+  const font = document.getElementById("font-"+key).value;
 
-  const message = 
+  const msg =
 `Hi SellFix Designing 👋
-I want to order the following:
+I want to order:
 
 Product: ${product}
-Size: ${size}
-Color: ${color}
-Design: ${design}
-Final Price: ₹${price}
+Background Colour: ${bg}
+Font Colour: ${font}
+Price: ₹${price}
 
-Please guide me for next steps.`;
+Please guide me further.`;
 
-  const url = "https://wa.me/917030191819?text=" + encodeURIComponent(message);
-  window.open(url, "_blank");
+  window.open("https://wa.me/917030191819?text="+encodeURIComponent(msg));
 }
 </script>
 
