@@ -27,6 +27,51 @@ body{margin:0;font-family:Inter;background:#000;color:#fff}
 
 h2{font-size:20px;margin:18px 0}
 
+/* ===== VIDEO CAROUSEL ===== */
+.video-section{
+  margin:24px 0;
+}
+.video-title{
+  font-size:18px;
+  font-weight:600;
+  margin-bottom:12px;
+}
+.video-carousel{
+  display:flex;
+  gap:14px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:10px;
+}
+.video-card{
+  flex:0 0 200px;
+  scroll-snap-align:start;
+  background:#111;
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+}
+.video-card video{
+  width:100%;
+  height:355px; /* 9:16 ratio */
+  object-fit:cover;
+  background:#000;
+}
+.video-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.35);
+  font-size:42px;
+  color:#fff;
+  cursor:pointer;
+}
+.video-card.playing .video-overlay{
+  display:none;
+}
+
 .sub-tag{
   display:inline-block;
 background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
@@ -130,6 +175,51 @@ select{
 </div>
 
 <div class="container">
+
+<!-- ===== VIDEO SHOWCASE ===== -->
+<div class="video-section">
+  <div class="video-title">🎥 Our Work Videos</div>
+
+  <div class="video-carousel">
+
+    <!-- VIDEO 1 -->
+    <div class="video-card">
+      <video
+        src="https://drive.google.com/uc?export=download&id=VIDEO_ID_1"
+        poster="https://drive.google.com/uc?export=view&id=THUMB_ID_1"
+        preload="none">
+      </video>
+      <div class="video-overlay" onclick="playVideo(this)">
+        ▶
+      </div>
+    </div>
+
+    <!-- VIDEO 2 -->
+    <div class="video-card">
+      <video
+        src="https://drive.google.com/uc?export=download&id=VIDEO_ID_2"
+        poster="https://drive.google.com/uc?export=view&id=THUMB_ID_2"
+        preload="none">
+      </video>
+      <div class="video-overlay" onclick="playVideo(this)">
+        ▶
+      </div>
+    </div>
+
+    <!-- VIDEO 3 -->
+    <div class="video-card">
+      <video
+        src="https://drive.google.com/uc?export=download&id=VIDEO_ID_3"
+        poster="https://drive.google.com/uc?export=view&id=THUMB_ID_3"
+        preload="none">
+      </video>
+      <div class="video-overlay" onclick="playVideo(this)">
+        ▶
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <h2>🪧 Name Plates</h2>
 
@@ -460,6 +550,25 @@ document.getElementById("imgPopup").onclick = function(e){
     document.getElementById("imgPopup").style.display = "none";
   }
 };
+</script>
+<script>
+function playVideo(el){
+  const card = el.closest(".video-card");
+  const video = card.querySelector("video");
+
+  // Pause all other videos
+  document.querySelectorAll(".video-card video").forEach(v=>{
+    if(v !== video){
+      v.pause();
+      v.currentTime = 0;
+      v.closest(".video-card").classList.remove("playing");
+    }
+  });
+
+  // Play selected video
+  video.play();
+  card.classList.add("playing");
+}
 </script>
 </body>
 </html>
