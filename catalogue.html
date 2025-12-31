@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SellFix Designing | Catalogue</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:#000;
+  color:#fff;
+}
+.container{
+  max-width:430px;
+  margin:auto;
+  padding:22px 16px 40px;
+}
+h2{
+  font-size:18px;
+  margin:20px 0 10px;
+}
+.card{
+  background:#151515;
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:16px;
+}
+label{
+  display:block;
+  font-size:13px;
+  margin:10px 0 4px;
+  color:#aaa;
+}
+select, input{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+.price{
+  font-size:18px;
+  font-weight:600;
+  margin-top:12px;
+}
+.order-btn{
+  margin-top:16px;
+  display:block;
+  background:#25D366;
+  color:#fff;
+  text-align:center;
+  padding:14px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h2>📂 Name Plate Catalogue</h2>
+
+<div class="card">
+
+<label>Product Type</label>
+<select id="product" onchange="updatePrice()">
+  <option value="LED Name Plate">LED Name Plate</option>
+  <option value="Acrylic Name Plate">Acrylic Name Plate</option>
+  <option value="Wooden Name Plate">Wooden Name Plate</option>
+  <option value="Resin Art Name Plate">Resin Art Name Plate</option>
+</select>
+
+<label>Size</label>
+<select id="size" onchange="updatePrice()">
+  <option value="12x6" data-price="1500">12 x 6 inch</option>
+  <option value="18x9" data-price="2500">18 x 9 inch</option>
+  <option value="24x12" data-price="4000">24 x 12 inch</option>
+</select>
+
+<label>Color</label>
+<select id="color">
+  <option>Warm White</option>
+  <option>Cool White</option>
+  <option>Golden</option>
+  <option>Black & White</option>
+</select>
+
+<label>Design Preference</label>
+<select id="design">
+  <option>Simple</option>
+  <option>Premium</option>
+  <option>Custom Artwork</option>
+</select>
+
+<div class="price">
+  Price: ₹<span id="price">1500</span>
+</div>
+
+<a class="order-btn" href="#" onclick="orderNow()">
+  🟢 Order Now on WhatsApp
+</a>
+
+</div>
+
+</div>
+
+<script>
+function updatePrice(){
+  const size = document.getElementById("size");
+  const price = size.options[size.selectedIndex].dataset.price;
+  document.getElementById("price").innerText = price;
+}
+
+function orderNow(){
+  const product = document.getElementById("product").value;
+  const size = document.getElementById("size").value;
+  const color = document.getElementById("color").value;
+  const design = document.getElementById("design").value;
+  const price = document.getElementById("price").innerText;
+
+  const message = 
+`Hi SellFix Designing 👋
+I want to order the following:
+
+Product: ${product}
+Size: ${size}
+Color: ${color}
+Design: ${design}
+Final Price: ₹${price}
+
+Please guide me for next steps.`;
+
+  const url = "https://wa.me/917030191819?text=" + encodeURIComponent(message);
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
