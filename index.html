@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DGK8KMELPR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DGK8KMELPR);
+</script>
 <meta charset="UTF-8">
 <title>SellFix Designing | Digital Card</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,33 +172,51 @@ body{
 
   <!-- ACTIONS -->
   <div class="action-grid">
-    <a class="action" href="https://g.page/r/CcWOie4iIH38EBE/review" target="_blank">
-      <i class="fa-solid fa-star"></i>Review
-    </a>
-    <a class="action" href="https://maps.app.goo.gl/P9vdzVXo8v2q2oro9" target="_blank">
-      <i class="fa-solid fa-location-dot"></i>Maps
-    </a>
-    <a class="action" href="https://wa.me/917030191819" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i>WhatsApp
-    </a>
-    <a class="action" href="tel:7030191819">
-      <i class="fa-solid fa-phone"></i>Call
-    </a>
+
+    <a class="action"
+   href="https://imaginarygifts.github.io/Sellfix-google-review-page/"
+   target="_blank"
+   onclick="trackClick('Google Review Click')">
+  <i class="fa-solid fa-star"></i>Review
+</a>
+
+    <a class="action"
+   href="https://maps.app.goo.gl/P9vdzVXo8v2q2oro9"
+   target="_blank"
+   onclick="trackClick('Maps Click')">
+  <i class="fa-solid fa-location-dot"></i>Maps
+</a>
+
+   <a class="action"
+   href="https://wa.me/917030191819"
+   target="_blank"
+   onclick="trackClick('WhatsApp Click')">
+  <i class="fa-brands fa-whatsapp"></i>WhatsApp
+</a>
+    <a class="action"
+   href="tel:7030191819"
+   onclick="trackClick('Call Click')">
+  <i class="fa-solid fa-phone"></i>Call
+</a>
+ 
   </div>
 
   <a class="primary-btn" href="sellfix-designing-contact.vcf" download>
     💾 Save Contact
   </a>
 
-  <a class="instagram-btn" href="https://instagram.com/sellfix_designing" target="_blank">
-    <i class="fab fa-instagram"></i> Follow Us on Instagram
-  </a>
+  <a class="instagram-btn"
+   href="https://instagram.com/sellfix_designing"   target="_blank"
+   onclick="trackClick('Instagram Click')">
+  <i class="fab fa-instagram"></i> Follow Us on Instagram
+</a>
 
-  <a class="whatsapp-btn"
-     href="https://wa.me/917030191819?text=Hi%20SellFix%20Designing%20👋%0AI%20just%20saved%20your%20contact%20from%20your%20digital%20visiting%20card."
-     target="_blank">
-    💬 Say Hi on WhatsApp
-  </a>
+<a class="whatsapp-btn"
+   href="https://wa.me/917030191819?text=Hi%20SellFix%20Designing%20👋%0AI%20just%20saved%20your%20contact%20from%20your%20digital%20visiting%20card."
+   target="_blank"
+   onclick="trackClick('WhatsApp Greeting Click')">
+  💬 Say Hi on WhatsApp
+</a>
 
   <!-- ABOUT -->
   <div class="section">
@@ -299,14 +325,31 @@ body{
 
 <script>
 function shareCard(){
+  trackClick('Share Button Click');
+
   const url = window.location.href;
   const text = "Check out SellFix Designing – Premium Name Plates & Custom Solutions";
 
   if (navigator.share) {
-    navigator.share({ title:"SellFix Designing", text:text, url:url });
+    navigator.share({
+      title: "SellFix Designing",
+      text: text,
+      url: url
+    });
   } else {
     navigator.clipboard.writeText(url);
     alert("Link copied! You can now share the digital card.");
+  }
+}
+</script>
+
+<script>
+function trackClick(name){
+  if(typeof gtag === "function"){
+    gtag('event', 'click', {
+      event_category: 'Digital Card',
+      event_label: name
+    });
   }
 }
 </script>
