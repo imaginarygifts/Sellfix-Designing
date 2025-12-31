@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/all.min.css"/>
 
 <style>
 *{box-sizing:border-box}
@@ -45,7 +45,7 @@ h2{font-size:20px;margin:18px 0}
 /* FORM */
 label{font-size:12px;color:#aaa;margin-top:10px;display:block}
 
-/* SIZE DROPDOWN (YELLOW) */
+/* SIZE DROPDOWN */
 .size-select{
   width:100%;
   padding:10px;
@@ -57,11 +57,16 @@ label{font-size:12px;color:#aaa;margin-top:10px;display:block}
   font-weight:600;
 }
 
-input{
-  width:100%;padding:10px;border-radius:10px;
-  border:none;margin-top:4px
+/* NORMAL DROPDOWN */
+select{
+  width:100%;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  margin-top:4px;
 }
 
+/* PRICE */
 .price{font-size:18px;font-weight:600;margin-top:12px}
 
 /* ORDER */
@@ -104,7 +109,7 @@ input{
 <!-- ================= LED NAME PLATES ================= -->
 <div class="sub-tag">LED Name Plates</div>
 
-<!-- White Shadow -->
+<!-- WHITE SHADOW -->
 <div class="card">
   <div class="variant-title">White Shadow LED Name Plate</div>
   <div class="images">
@@ -118,8 +123,15 @@ input{
     <option>18x30</option><option>24x24</option><option>24x30</option><option>24x36</option>
   </select>
 
-  <label>Background Colour</label><input id="bg-whiteShadow">
-  <label>Font Colour</label><input id="font-whiteShadow">
+  <label>Background Colour</label>
+  <select id="bg-whiteShadow">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-whiteShadow">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
 
   <div class="price">₹ <span id="whiteShadowPrice"></span></div>
 
@@ -128,12 +140,9 @@ input{
   </a>
 </div>
 
-<!-- Shadow LED -->
+<!-- SHADOW LED -->
 <div class="card">
   <div class="variant-title">Shadow LED Name Plate</div>
-  <div class="images">
-    <img src="images/sl1.jpg"><img src="images/sl2.jpg">
-  </div>
 
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'shadowLed')">
@@ -141,8 +150,15 @@ input{
     <option>18x24</option><option>24x30</option>
   </select>
 
-  <label>Background Colour</label><input id="bg-shadowLed">
-  <label>Font Colour</label><input id="font-shadowLed">
+  <label>Background Colour</label>
+  <select id="bg-shadowLed">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-shadowLed">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
 
   <div class="price">₹ <span id="shadowLedPrice"></span></div>
 
@@ -151,21 +167,24 @@ input{
   </a>
 </div>
 
-<!-- LED Letters -->
+<!-- LED LETTERS -->
 <div class="card">
   <div class="variant-title">LED Letters Name Plate</div>
-  <div class="images">
-    <img src="images/ll1.jpg"><img src="images/ll2.jpg">
-  </div>
 
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'ledLetters')">
-    <option>12x18</option><option>12x24</option><option>18x24</option>
-    <option>24x30</option>
+    <option>12x18</option><option>12x24</option><option>18x24</option><option>24x30</option>
   </select>
 
-  <label>Background Colour</label><input id="bg-ledLetters">
-  <label>Font Colour</label><input id="font-ledLetters">
+  <label>Background Colour</label>
+  <select id="bg-ledLetters">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-ledLetters">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
 
   <div class="price">₹ <span id="ledLettersPrice"></span></div>
 
@@ -174,21 +193,24 @@ input{
   </a>
 </div>
 
-<!-- Cutout LED -->
+<!-- CUTOUT LED -->
 <div class="card">
   <div class="variant-title">Cutout LED Name Plate</div>
-  <div class="images">
-    <img src="images/cl1.jpg"><img src="images/cl2.jpg">
-  </div>
 
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'cutoutLed')">
-    <option>12x18</option><option>12x24</option><option>18x24</option>
-    <option>24x30</option><option>24x36</option>
+    <option>12x18</option><option>12x24</option><option>18x24</option><option>24x30</option><option>24x36</option>
   </select>
 
-  <label>Background Colour</label><input id="bg-cutoutLed">
-  <label>Font Colour</label><input id="font-cutoutLed">
+  <label>Background Colour</label>
+  <select id="bg-cutoutLed">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-cutoutLed">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
 
   <div class="price">₹ <span id="cutoutLedPrice"></span></div>
 
@@ -202,31 +224,70 @@ input{
 
 <div class="card">
   <div class="variant-title">Glossy Black Acrylic</div>
+
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'acrylicBlack')">
     <option>8x12</option><option>12x18</option><option>12x24</option>
   </select>
+
+  <label>Background Colour</label>
+  <select id="bg-acrylicBlack">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-acrylicBlack">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
+
   <div class="price">₹ <span id="acrylicBlackPrice"></span></div>
+
   <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Glossy Black','acrylicBlack')">Order</a>
 </div>
 
 <div class="card">
   <div class="variant-title">Glossy White Acrylic</div>
+
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'acrylicWhite')">
     <option>8x12</option><option>12x18</option><option>12x24</option>
   </select>
+
+  <label>Background Colour</label>
+  <select id="bg-acrylicWhite">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-acrylicWhite">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
+
   <div class="price">₹ <span id="acrylicWhitePrice"></span></div>
+
   <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Glossy White','acrylicWhite')">Order</a>
 </div>
 
 <div class="card">
   <div class="variant-title">Wood Texture Acrylic</div>
+
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'acrylicWood')">
     <option>12x18</option><option>12x24</option><option>18x24</option>
   </select>
+
+  <label>Background Colour</label>
+  <select id="bg-acrylicWood">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-acrylicWood">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
+
   <div class="price">₹ <span id="acrylicWoodPrice"></span></div>
+
   <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Wood Texture','acrylicWood')">Order</a>
 </div>
 
@@ -235,37 +296,76 @@ input{
 
 <div class="card">
   <div class="variant-title">Circle Resin Name Plate</div>
+
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'resinCircle')">
     <option>12x12</option><option>18x18</option><option>24x24</option>
   </select>
+
+  <label>Background Colour</label>
+  <select id="bg-resinCircle">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-resinCircle">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
+
   <div class="price">₹ <span id="resinCirclePrice"></span></div>
+
   <a class="order-btn" onclick="orderNow('Resin Name Plate','Circle','resinCircle')">Order</a>
 </div>
 
 <div class="card">
   <div class="variant-title">Rectangle Resin Name Plate</div>
+
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'resinRect')">
     <option>12x18</option><option>12x24</option><option>18x24</option>
   </select>
+
+  <label>Background Colour</label>
+  <select id="bg-resinRect">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-resinRect">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
+
   <div class="price">₹ <span id="resinRectPrice"></span></div>
+
   <a class="order-btn" onclick="orderNow('Resin Name Plate','Rectangle','resinRect')">Order</a>
 </div>
 
 <div class="card">
   <div class="variant-title">Agate Resin Name Plate</div>
+
   <label>Size</label>
   <select class="size-select" onchange="updatePrice(this,'resinAgate')">
     <option>12x18</option><option>18x24</option><option>24x30</option>
   </select>
+
+  <label>Background Colour</label>
+  <select id="bg-resinAgate">
+    <option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+  </select>
+
+  <label>Font Colour</label>
+  <select id="font-resinAgate">
+    <option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+  </select>
+
   <div class="price">₹ <span id="resinAgatePrice"></span></div>
+
   <a class="order-btn" onclick="orderNow('Resin Name Plate','Agate','resinAgate')">Order</a>
 </div>
 
 </div>
 
-<button class="floating-share" onclick="navigator.share({title:'SellFix Designing',url:location.href})">
+<button class="floating-share" onclick="navigator.share({title:'SellFix Designing Catalogue',url:location.href})">
   <i class="fa-solid fa-share-nodes"></i>
 </button>
 
@@ -288,21 +388,26 @@ function updatePrice(sel,key){
     priceTable[key][sel.value];
 }
 
-function orderNow(cat,variant,key){
+function orderNow(category,variant,key){
   const size=document.querySelector(`[onchange*="${key}"]`).value;
+  const bg=document.getElementById("bg-"+key).value;
+  const font=document.getElementById("font-"+key).value;
   const price=document.getElementById(key+"Price").innerText;
+
   const msg=`Hi SellFix Designing 👋
-Category: ${cat}
+Category: ${category}
 Variant: ${variant}
 Size: ${size}
-Price: ₹${price}`;
+Background Colour: ${bg}
+Font Colour: ${font}
+Final Price: ₹${price}`;
+
   window.open("https://wa.me/917030191819?text="+encodeURIComponent(msg));
 }
 
-/* DEFAULT PRICE LOAD */
+/* LOAD DEFAULT PRICES */
 document.querySelectorAll(".size-select").forEach(sel=>{
   const key=sel.getAttribute("onchange").match(/'(.+?)'/)[1];
-  sel.selectedIndex=0;
   document.getElementById(key+"Price").innerText=
     priceTable[key][sel.value];
 });
