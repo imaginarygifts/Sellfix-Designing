@@ -2,358 +2,235 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SellFix Designing | Digital Card</title>
+<title>Review SellFix Designing</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
 
 <style>
-*{box-sizing:border-box}
 body{
   margin:0;
   font-family:'Inter',sans-serif;
   background:#000;
   color:#fff;
-  display:flex;
-  justify-content:center;
 }
 .container{
-  width:100%;
-  max-width:430px;
-  min-height:100vh;
-  background:#0b0b0b;
-  padding:24px 18px 40px;
-}
-.logo{
+  max-width:420px;
+  margin:auto;
+  padding:26px 18px 40px;
   text-align:center;
-  margin-bottom:12px;
 }
-.logo img{
-  max-width:150px;
+.brand{
+  font-size:22px;
+  font-weight:600;
 }
-.tagline{
-  text-align:center;
+.subtitle{
   font-size:14px;
   color:#aaa;
-  margin-bottom:10px;
+  margin:10px 0 18px;
 }
-.action-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-  margin-top:26px;
-}
-.action{
-  background:#151515;
-  border-radius:14px;
-  padding:14px 0;
-  text-align:center;
-  color:#fff;
-  text-decoration:none;
-  font-size:12px;
-}
-.action i{
-  font-size:18px;
-  margin-bottom:6px;
-  display:block;
-}
-.primary-btn{
-  margin-top:18px;
-  display:block;
-  background:#fff;
-  color:#000;
-  text-align:center;
-  padding:14px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:600;
-}
-.instagram-btn{
-  margin-top:16px;
+
+/* Stars */
+.stars{
   display:flex;
-  align-items:center;
   justify-content:center;
   gap:10px;
-  background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
-  color:#fff;
-  padding:14px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:600;
+  font-size:28px;
+  margin-bottom:22px;
+  cursor:pointer;
 }
-.whatsapp-greet-btn{
-  margin-top:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  background:#25D366;
-  color:#fff;
-  padding:14px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:600;
+.stars i{
+  color:#444;
 }
-.section{
-  margin-top:32px;
+.stars i.active{
+  color:#f5c518;
 }
-.section h3{
-  font-size:16px;
-  margin-bottom:10px;
+
+/* Reviews */
+.review-list{
+  display:none;
 }
-.card{
+.review-card{
   background:#151515;
   border-radius:16px;
   padding:14px;
-  font-size:13.5px;
-  color:#ccc;
+  margin-bottom:12px;
+  font-size:14px;
   line-height:1.6;
+  cursor:pointer;
 }
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-.tag{
+.review-card:hover{
   background:#1f1f1f;
-  padding:8px 12px;
-  border-radius:20px;
-  font-size:12px;
 }
-.social{
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  margin-top:26px;
+
+/* Type own */
+.type-own{
+  margin-top:18px;
+  display:none;
+  background:#fff;
+  color:#000;
+  padding:14px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
 }
-.social a{
-  color:#fff;
-  font-size:22px;
-}
-.footer{
-  text-align:center;
-  font-size:11px;
-  color:#777;
-  margin-top:30px;
-}
-.floating-share{
+
+/* Popup */
+.popup{
   position:fixed;
-  bottom:22px;
-  right:18px;
-  width:54px;
-  height:54px;
-  border-radius:50%;
-  background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
-  color:#fff;
-  border:none;
-  display:flex;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
   align-items:center;
   justify-content:center;
-  font-size:18px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.4);
-  cursor:pointer;
   z-index:9999;
+}
+.popup.show{display:flex;}
+.popup-box{
+  background:#fff;
+  color:#000;
+  padding:22px 26px;
+  border-radius:16px;
+  font-size:15px;
+  font-weight:500;
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
+  <div class="brand">SellFix Designing</div>
+  <div class="subtitle">Select your experience ⭐</div>
 
-  <!-- LOGO -->
-  <div class="logo">
-    <img src="Logo.png" alt="SellFix Designing">
+  <!-- STARS -->
+  <div class="stars">
+    <i class="fa-solid fa-star" data-star="1"></i>
+    <i class="fa-solid fa-star" data-star="2"></i>
+    <i class="fa-solid fa-star" data-star="3"></i>
+    <i class="fa-solid fa-star" data-star="4"></i>
+    <i class="fa-solid fa-star" data-star="5"></i>
   </div>
 
-  <div class="tagline">Name Plate • Neon Sign• Corporate Gift • Personalized Gift</div>
+  <!-- REVIEWS -->
+  <div id="reviews" class="review-list"></div>
 
-  <!-- QUICK ACTIONS -->
-  <div class="action-grid">
-    <a class="action" href="REVIEW_LINK_HERE" target="_blank">
-      <i class="fa-solid fa-star"></i>Review
-    </a>
-    <a class="action" href="https://maps.app.goo.gl/P9vdzVXo8v2q2oro9" target="_blank">
-      <i class="fa-solid fa-location-dot"></i>Maps
-    </a>
-    <a class="action" href="https://wa.me/917030191819" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i>WhatsApp
-    </a>
-    <a class="action" href="tel:7030191819">
-      <i class="fa-solid fa-phone"></i>Call
-    </a>
-  </div>
-
-  <!-- CTA -->
-  <a class="primary-btn" href="sellfix-designing-contact.vcf" download>
-    💾 Save Contact
+  <!-- TYPE OWN -->
+  <a id="typeOwn" class="type-own" 
+     href="https://g.page/r/CcWOie4iIH38EBE/review" target="_blank">
+    ✍️ Type your own review
   </a>
-
-  <a class="instagram-btn" href="https://instagram.com/sellfix_designing" target="_blank">
-    <i class="fab fa-instagram"></i> Follow Us on Instagram
-  </a>
-
-  <a class="whatsapp-greet-btn"
-     href="https://wa.me/917030191819?text=Hi%20SellFix%20Designing%20👋%0AI%20just%20saved%20your%20contact%20from%20your%20digital%20visiting%20card.%0ALooking%20forward%20to%20working%20with%20you!"
-     target="_blank">
-    💬 Say Hi on WhatsApp
-  </a>
-<!-- ABOUT -->
-<div class="section">
-  <h3>About Us</h3>
-  <div class="card">
-    <strong>Experts in Premium Name Plates</strong><br><br>
-
-    SellFix Designing is a trusted name in the customized gifting and branding space, 
-    widely known for our premium and innovative <strong>Name Plate solutions</strong>.<br><br>
-
-    We specialize in designing high-quality <strong>LED Name Plates, Acrylic, MDF, Wooden, 
-    Resin Art and Lippan Art Name Plates</strong> that enhance the identity of homes, offices, 
-    societies and commercial spaces.<br><br>
-
-    Along with name plates, we also create customized desk plates, neon sign boards, 
-    corporate gifts and personalized gifting products — all crafted with attention 
-    to detail, durability and premium finishing.
-  </div>
-</div>
-<!-- WHY CHOOSE US -->
-<div class="section">
-  <h3>Why Choose SellFix Designing?</h3>
-  <div class="card">
-    ✔ Specialized in premium Name Plates<br>
-    ✔ High-quality materials & long-lasting finish<br>
-    ✔ Custom designs as per your space & taste<br>
-    ✔ Perfect for homes, offices & societies<br>
-    ✔ Reliable service & timely delivery
-  </div>
-</div>
-<!-- TRUST -->
-<div class="section">
-  <h3>Our Experience</h3>
-  <div class="tags">
-    <div class="tag">1000+ Name Plates Delivered</div>
-    <div class="tag">Homes & Offices</div>
-    <div class="tag">Societies & Commercial Spaces</div>
-    <div class="tag">Premium Craftsmanship</div>
-    <div class="tag">Trusted by Local Customers</div>
-  </div>
-</div>
-<!-- SERVICE AREA -->
-<div class="section">
-  <h3>Service Area</h3>
-  <div class="card">
-    We primarily serve <strong>Nagpur</strong> and nearby areas, 
-    delivering customized and premium Name Plates, Desk Plates, 
-    Neon Sign Boards and Corporate Gifting solutions.
-    <br><br>
-    Pan-India dispatch available for selected products.
-  </div>
 </div>
 
-  <!-- NAME PLATES -->
-  <div class="section">
-    <h3>Name Plates</h3>
-    <div class="tags">
-      <div class="tag">LED Name Plate</div>
-      <div class="tag">Acrylic</div>
-      <div class="tag">MDF</div>
-      <div class="tag">Resin Art</div>
-      <div class="tag">Wooden</div>
-      <div class="tag">Lippan Art</div>
-    </div>
-  </div>
-
-  <!-- DESK PLATES -->
-  <div class="section">
-    <h3>Desk Plates</h3>
-    <div class="tags">
-      <div class="tag">LED</div>
-      <div class="tag">Wooden</div>
-      <div class="tag">Acrylic</div>
-      <div class="tag">MDF</div>
-    </div>
-  </div>
-
-  <!-- NEON -->
-  <div class="section">
-    <h3>Neon Sign Boards</h3>
-    <div class="tags">
-      <div class="tag">LED Neon</div>
-      <div class="tag">Floro Multi Colour Neon</div>
-    </div>
-  </div>
-
-  <!-- CORPORATE GIFTS -->
-  <div class="section">
-    <h3>Customized Corporate Gifts</h3>
-    <div class="tags">
-      <div class="tag">Mugs & Magic Mugs</div>
-      <div class="tag">Pens & Pen Stands</div>
-      <div class="tag">Keychains</div>
-      <div class="tag">Badges</div>
-      <div class="tag">Wallets</div>
-      <div class="tag">Gift Combos</div>
-      <div class="tag">Bottles & Tumblers</div>
-      <div class="tag">Calendars</div>
-      <div class="tag">Desk Organizers</div>
-      <div class="tag">Frames</div>
-      <div class="tag">Momento & Trophy</div>
-      <div class="tag">LED Frames</div>
-    </div>
-  </div>
-
-  <!-- PERSONALIZED GIFTS -->
-  <div class="section">
-    <h3>Personalized Gifts</h3>
-    <div class="tags">
-      <div class="tag">Wallets & Clutches</div>
-      <div class="tag">Jewellery</div>
-      <div class="tag">Keychains</div>
-      <div class="tag">LED Lamps</div>
-      <div class="tag">Rotating Lamps</div>
-      <div class="tag">Wooden Planks</div>
-      <div class="tag">Photo Frames</div>
-      <div class="tag">Mugs & Magic Mugs</div>
-      <div class="tag">Photo Standy</div>
-      <div class="tag">Pillows</div>
-    </div>
-  </div>
-
-<!-- GALLERY CTA -->
-<a class="primary-btn" href="https://instagram.com/sellfix_designing" target="_blank">
-  📸 View Our Work on Instagram
-</a>
-
-  <!-- SOCIAL -->
-  <div class="social">
-    <a href="https://instagram.com/sellfix_designing" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a href="mailto:sellfixdesigning@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-  </div>
-
-  <div class="footer">
-    © SellFix Designing · Premium Custom Solutions
-  </div>
-
+<!-- POPUP -->
+<div id="popup" class="popup">
+  <div id="popupText" class="popup-box"></div>
 </div>
-
-<button class="floating-share" onclick="shareCard()">
-  <i class="fa-solid fa-share-nodes"></i>
-</button>
 
 <script>
-function shareCard(){
-  const url = "PASTE_THIS_PAGE_URL";
-  const text = "Check out SellFix Designing – Customized & Corporate Gift Solutions";
+const reviewLink = "https://g.page/r/CcWOie4iIH38EBE/review";
 
-  if (navigator.share) {
-    navigator.share({ title:"SellFix Designing", text:text, url:url });
-  } else {
-    navigator.clipboard.writeText(url);
-    alert("Link copied! You can now share the digital card.");
+const reviews = {
+  1:[
+    "The name plate design could be improved. Expected better finishing.",
+    "The quality was not as expected. Hoping for improvement.",
+    "Service experience was average. Communication can be better.",
+    "The product was okay but didn’t fully meet expectations.",
+    "Delivery and finishing need improvement."
+  ],
+  2:[
+    "The name plate design was decent but finishing could be better.",
+    "Average experience overall. Some improvements needed.",
+    "Product quality was okay, not very impressive.",
+    "Design was fine but delivery took longer than expected.",
+    "Service was average. Can improve in detailing."
+  ],
+  3:[
+    "Overall experience was good. The name plate looked nice.",
+    "Decent quality name plate with good design.",
+    "Satisfied with the product. Could improve finishing a bit.",
+    "Nice work overall. Good design and material.",
+    "The name plate looks good and does the job well."
+  ],
+  4:[
+    "Very good quality name plate with clean finishing.",
+    "Nice LED name plate. Looks elegant at my home entrance.",
+    "Good craftsmanship and premium materials used.",
+    "Happy with the name plate quality and design.",
+    "Professional work and timely delivery.",
+    "Well-designed name plate with excellent finishing.",
+    "The LED lighting is perfect and classy.",
+    "Very satisfied with the overall experience.",
+    "Quality and design exceeded expectations.",
+    "Great service and good attention to detail."
+  ],
+  5:[
+    "Excellent quality name plate. Premium finishing and beautiful design.",
+    "Outstanding work by SellFix Designing. Highly recommended.",
+    "Best place for customized name plates. Amazing craftsmanship.",
+    "Superb LED name plate with elegant look.",
+    "Top-notch quality and professional service.",
+    "Very creative designs and durable materials.",
+    "The name plate completely transformed my entrance.",
+    "Highly satisfied with quality, design and service.",
+    "Perfect finishing and great customer support.",
+    "One of the best name plate designers in the city."
+  ]
+};
+
+document.querySelectorAll('.stars i').forEach(star=>{
+  star.addEventListener('click',()=>{
+    const rating = parseInt(star.dataset.star);
+
+    document.querySelectorAll('.stars i').forEach(s=>s.classList.remove('active'));
+    for(let i=0;i<rating;i++){
+      document.querySelectorAll('.stars i')[i].classList.add('active');
+    }
+
+    showReviews(rating);
+  });
+});
+
+function showReviews(rating){
+  const container = document.getElementById('reviews');
+  const typeOwn = document.getElementById('typeOwn');
+
+  container.innerHTML = "";
+  container.style.display = "block";
+
+  // Type own visibility
+  if(rating >= 3){
+    typeOwn.style.display = "block";
+  }else{
+    typeOwn.style.display = "none";
   }
+
+  reviews[rating].forEach(text=>{
+    const div = document.createElement("div");
+    div.className = "review-card";
+    div.innerText = text;
+
+    div.onclick = ()=>{
+      navigator.clipboard.writeText(text);
+
+      if(rating >= 3){
+        showPopup("✅ Copied! Redirecting to Google review page…");
+        setTimeout(()=>{ window.location.href = reviewLink; },1500);
+      }else{
+        showPopup("🙏 Thank you for your feedback. We truly appreciate it!");
+      }
+    };
+    container.appendChild(div);
+  });
+}
+
+function showPopup(message){
+  document.getElementById("popupText").innerText = message;
+  document.getElementById("popup").classList.add("show");
+  setTimeout(()=>{
+    document.getElementById("popup").classList.remove("show");
+  },2000);
 }
 </script>
 
