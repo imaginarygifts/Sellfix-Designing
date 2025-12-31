@@ -7,17 +7,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
 body{margin:0;font-family:Inter;background:#000;color:#fff}
-.container{max-width:460px;margin:auto;padding:18px}
+
+.container{
+  max-width:460px;
+  margin:auto;
+  padding:70px 18px 18px;
+}
+
 h2{font-size:20px;margin:20px 0 6px}
 h3{font-size:16px;margin:16px 0 8px;color:#f5c518}
+
 .card{background:#151515;border-radius:16px;padding:14px;margin-bottom:18px}
+
 .variant-title{font-size:15px;font-weight:600;margin-bottom:6px}
+
 .images{display:flex;gap:10px;overflow-x:auto;margin-bottom:8px}
+
 .images img{width:140px;height:95px;object-fit:cover;border-radius:10px}
+
 label{font-size:12px;color:#aaa;margin-top:8px;display:block}
+
 select,input{width:100%;padding:10px;border-radius:10px;border:none;margin-top:4px}
 .price{font-size:18px;font-weight:600;margin-top:10px}
+
 .order-btn{
   margin-top:12px;
   background:#25D366;
@@ -29,10 +43,35 @@ select,input{width:100%;padding:10px;border-radius:10px;border:none;margin-top:4
   font-weight:600;
   display:block;
 }
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#0b0b0b;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-bottom:1px solid #1f1f1f;
+}
+.header img{
+  height:34px;
+  width:auto;
+}
+.header span{
+  font-size:16px;
+  font-weight:600;
+}
 </style>
 </head>
 
 <body>
+<!-- STICKY HEADER -->
+<div class="header">
+  <img src="images/logo.png" alt="SellFix Designing Logo">
+  <span>SellFix Designing</span>
+</div>
+
 <div class="container">
 
 <h2>🪧 Name Plates Catalogue</h2>
