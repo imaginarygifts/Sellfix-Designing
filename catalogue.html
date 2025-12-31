@@ -10,104 +10,61 @@
 
 <style>
 *{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter;
-  background:#000;
-  color:#fff;
-}
+body{margin:0;font-family:Inter;background:#000;color:#fff}
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header{
-  position:sticky;
-  top:0;
-  z-index:1000;
+  position:sticky;top:0;z-index:1000;
   background:#0b0b0b;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 14px;
-  border-bottom:1px solid #1f1f1f;
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border-bottom:1px solid #1f1f1f
 }
 .header img{height:34px}
-.header span{font-size:16px;font-weight:600}
+.header span{font-weight:600}
 
-/* ===== CONTAINER ===== */
-.container{
-  max-width:460px;
-  margin:auto;
-  padding:70px 16px 40px;
-}
-
+/* CONTAINER */
+.container{max-width:460px;margin:auto;padding:70px 16px 40px}
 h2{font-size:20px;margin:18px 0}
-.variant-title{font-size:15px;font-weight:600;margin-bottom:6px}
-
-/* ===== SUB CATEGORY TAG ===== */
 .sub-tag{
-  display:inline-block;
-  background:#1f1f1f;
-  padding:8px 14px;
-  border-radius:20px;
-  font-size:13px;
-  margin-bottom:12px;
+  display:inline-block;background:#1f1f1f;
+  padding:8px 14px;border-radius:20px;
+  font-size:13px;margin-bottom:12px
 }
 
-/* ===== CARD ===== */
+/* CARD */
 .card{
-  background:#151515;
-  border-radius:16px;
-  padding:14px;
-  margin-bottom:20px;
+  background:#151515;border-radius:16px;
+  padding:14px;margin-bottom:22px
 }
+.variant-title{font-weight:600;margin-bottom:6px}
 
-/* ===== IMAGE SLIDER ===== */
-.images{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  margin-bottom:10px;
-}
-.images img{
-  width:140px;
-  height:95px;
-  object-fit:cover;
-  border-radius:10px;
-}
+/* IMAGES */
+.images{display:flex;gap:10px;overflow-x:auto;margin-bottom:10px}
+.images img{width:140px;height:95px;object-fit:cover;border-radius:10px}
 
-/* ===== YELLOW INFO BUTTON ===== */
-.info-btn{
-  background:#f5e642;
-  color:#000;
-  text-align:center;
-  padding:10px;
-  border-radius:12px;
-  font-weight:600;
-  margin:10px 0;
-}
+/* FORM */
+label{font-size:12px;color:#aaa;margin-top:10px;display:block}
 
-/* ===== FORM ===== */
-label{
-  font-size:12px;
-  color:#aaa;
-  margin-top:10px;
-  display:block;
-}
-select,input{
+/* SIZE DROPDOWN (YELLOW) */
+.size-select{
   width:100%;
   padding:10px;
   border-radius:10px;
   border:none;
   margin-top:4px;
-}
-
-/* ===== PRICE ===== */
-.price{
-  font-size:18px;
+  background:#f5e642;
+  color:#000;
   font-weight:600;
-  margin-top:12px;
 }
 
-/* ===== ORDER BUTTON ===== */
+input{
+  width:100%;padding:10px;border-radius:10px;
+  border:none;margin-top:4px
+}
+
+.price{font-size:18px;font-weight:600;margin-top:12px}
+
+/* ORDER */
 .order-btn{
   margin-top:14px;
   background:#25D366;
@@ -120,33 +77,23 @@ select,input{
   display:block;
 }
 
-/* ===== FLOATING SHARE ===== */
+/* FLOATING SHARE */
 .floating-share{
-  position:fixed;
-  bottom:22px;
-  right:18px;
-  width:54px;
-  height:54px;
-  border-radius:50%;
+  position:fixed;bottom:22px;right:18px;
+  width:54px;height:54px;border-radius:50%;
   background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
-  color:#fff;
-  border:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.4);
-  cursor:pointer;
-  z-index:9999;
+  color:#fff;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;box-shadow:0 8px 20px rgba(0,0,0,.4);
+  z-index:9999;cursor:pointer
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
-  <img src="images/logo.png">
+  <img src="sellfixlogo.png">
   <span>SellFix Designing</span>
 </div>
 
@@ -157,107 +104,208 @@ select,input{
 <!-- ================= LED NAME PLATES ================= -->
 <div class="sub-tag">LED Name Plates</div>
 
+<!-- White Shadow -->
 <div class="card">
   <div class="variant-title">White Shadow LED Name Plate</div>
-
   <div class="images">
-    <img src="images/white-shadow-1.jpg">
-    <img src="images/white-shadow-2.jpg">
-    <img src="images/white-shadow-3.jpg">
+    <img src="images/ws1.jpg"><img src="images/ws2.jpg"><img src="images/ws3.jpg">
   </div>
 
-  <div class="info-btn">Select Size to Check Price</div>
-
   <label>Size</label>
-  <select onchange="updatePrice(this,'whiteShadow')">
-    <option value="">Select size</option>
+  <select class="size-select" onchange="updatePrice(this,'whiteShadow')">
     <option>8x12</option><option>12x12</option><option>12x18</option>
     <option>12x24</option><option>18x18</option><option>18x24</option>
     <option>18x30</option><option>24x24</option><option>24x30</option><option>24x36</option>
   </select>
 
-  <label>Background Colour</label>
-  <input id="bg-whiteShadow" placeholder="Eg. Black, Marble">
+  <label>Background Colour</label><input id="bg-whiteShadow">
+  <label>Font Colour</label><input id="font-whiteShadow">
 
-  <label>Font Colour</label>
-  <input id="font-whiteShadow" placeholder="Eg. White, Gold">
+  <div class="price">₹ <span id="whiteShadowPrice"></span></div>
 
-  <div class="price">₹ <span id="whiteShadowPrice">0</span></div>
-
-  <a class="order-btn"
-     onclick="orderNow('White Shadow LED Name Plate','whiteShadow')">
-     Order on WhatsApp
+  <a class="order-btn" onclick="orderNow('LED Name Plate','White Shadow LED','whiteShadow')">
+    Order on WhatsApp
   </a>
 </div>
 
+<!-- Shadow LED -->
+<div class="card">
+  <div class="variant-title">Shadow LED Name Plate</div>
+  <div class="images">
+    <img src="images/sl1.jpg"><img src="images/sl2.jpg">
+  </div>
+
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'shadowLed')">
+    <option>8x12</option><option>12x18</option><option>12x24</option>
+    <option>18x24</option><option>24x30</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-shadowLed">
+  <label>Font Colour</label><input id="font-shadowLed">
+
+  <div class="price">₹ <span id="shadowLedPrice"></span></div>
+
+  <a class="order-btn" onclick="orderNow('LED Name Plate','Shadow LED','shadowLed')">
+    Order on WhatsApp
+  </a>
 </div>
 
-<!-- FLOATING SHARE -->
-<button class="floating-share" onclick="shareCatalogue()">
+<!-- LED Letters -->
+<div class="card">
+  <div class="variant-title">LED Letters Name Plate</div>
+  <div class="images">
+    <img src="images/ll1.jpg"><img src="images/ll2.jpg">
+  </div>
+
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'ledLetters')">
+    <option>12x18</option><option>12x24</option><option>18x24</option>
+    <option>24x30</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-ledLetters">
+  <label>Font Colour</label><input id="font-ledLetters">
+
+  <div class="price">₹ <span id="ledLettersPrice"></span></div>
+
+  <a class="order-btn" onclick="orderNow('LED Name Plate','LED Letters','ledLetters')">
+    Order on WhatsApp
+  </a>
+</div>
+
+<!-- Cutout LED -->
+<div class="card">
+  <div class="variant-title">Cutout LED Name Plate</div>
+  <div class="images">
+    <img src="images/cl1.jpg"><img src="images/cl2.jpg">
+  </div>
+
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'cutoutLed')">
+    <option>12x18</option><option>12x24</option><option>18x24</option>
+    <option>24x30</option><option>24x36</option>
+  </select>
+
+  <label>Background Colour</label><input id="bg-cutoutLed">
+  <label>Font Colour</label><input id="font-cutoutLed">
+
+  <div class="price">₹ <span id="cutoutLedPrice"></span></div>
+
+  <a class="order-btn" onclick="orderNow('LED Name Plate','Cutout LED','cutoutLed')">
+    Order on WhatsApp
+  </a>
+</div>
+
+<!-- ================= ACRYLIC ================= -->
+<div class="sub-tag">Acrylic Name Plates</div>
+
+<div class="card">
+  <div class="variant-title">Glossy Black Acrylic</div>
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'acrylicBlack')">
+    <option>8x12</option><option>12x18</option><option>12x24</option>
+  </select>
+  <div class="price">₹ <span id="acrylicBlackPrice"></span></div>
+  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Glossy Black','acrylicBlack')">Order</a>
+</div>
+
+<div class="card">
+  <div class="variant-title">Glossy White Acrylic</div>
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'acrylicWhite')">
+    <option>8x12</option><option>12x18</option><option>12x24</option>
+  </select>
+  <div class="price">₹ <span id="acrylicWhitePrice"></span></div>
+  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Glossy White','acrylicWhite')">Order</a>
+</div>
+
+<div class="card">
+  <div class="variant-title">Wood Texture Acrylic</div>
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'acrylicWood')">
+    <option>12x18</option><option>12x24</option><option>18x24</option>
+  </select>
+  <div class="price">₹ <span id="acrylicWoodPrice"></span></div>
+  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Wood Texture','acrylicWood')">Order</a>
+</div>
+
+<!-- ================= RESIN ================= -->
+<div class="sub-tag">Resin Name Plates</div>
+
+<div class="card">
+  <div class="variant-title">Circle Resin Name Plate</div>
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'resinCircle')">
+    <option>12x12</option><option>18x18</option><option>24x24</option>
+  </select>
+  <div class="price">₹ <span id="resinCirclePrice"></span></div>
+  <a class="order-btn" onclick="orderNow('Resin Name Plate','Circle','resinCircle')">Order</a>
+</div>
+
+<div class="card">
+  <div class="variant-title">Rectangle Resin Name Plate</div>
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'resinRect')">
+    <option>12x18</option><option>12x24</option><option>18x24</option>
+  </select>
+  <div class="price">₹ <span id="resinRectPrice"></span></div>
+  <a class="order-btn" onclick="orderNow('Resin Name Plate','Rectangle','resinRect')">Order</a>
+</div>
+
+<div class="card">
+  <div class="variant-title">Agate Resin Name Plate</div>
+  <label>Size</label>
+  <select class="size-select" onchange="updatePrice(this,'resinAgate')">
+    <option>12x18</option><option>18x24</option><option>24x30</option>
+  </select>
+  <div class="price">₹ <span id="resinAgatePrice"></span></div>
+  <a class="order-btn" onclick="orderNow('Resin Name Plate','Agate','resinAgate')">Order</a>
+</div>
+
+</div>
+
+<button class="floating-share" onclick="navigator.share({title:'SellFix Designing',url:location.href})">
   <i class="fa-solid fa-share-nodes"></i>
 </button>
 
 <script>
-/* ===== PRICE TABLE (YOU EDIT THIS) ===== */
-const priceTable = {
-  whiteShadow:{
-    "8x12":1200,
-    "12x12":1500,
-    "12x18":2200,
-    "12x24":3000,
-    "18x18":3600,
-    "18x24":4300,
-    "18x30":5200,
-    "24x24":6100,
-    "24x30":7200,
-    "24x36":8500
-  }
+const priceTable={
+  whiteShadow:{"8x12":1200,"12x12":1500,"12x18":2200,"12x24":3000,"18x18":3600,"18x24":4300,"18x30":5200,"24x24":6100,"24x30":7200,"24x36":8500},
+  shadowLed:{"8x12":1000,"12x18":1800,"12x24":2600,"18x24":3400,"24x30":4800},
+  ledLetters:{"12x18":2200,"12x24":3000,"18x24":4200,"24x30":6000},
+  cutoutLed:{"12x18":2400,"12x24":3200,"18x24":4500,"24x30":6200,"24x36":7800},
+  acrylicBlack:{"8x12":900,"12x18":1600,"12x24":2400},
+  acrylicWhite:{"8x12":850,"12x18":1500,"12x24":2300},
+  acrylicWood:{"12x18":1700,"12x24":2600,"18x24":3500},
+  resinCircle:{"12x12":2200,"18x18":3800,"24x24":5500},
+  resinRect:{"12x18":2600,"12x24":3600,"18x24":4800},
+  resinAgate:{"12x18":4200,"18x24":6500,"24x30":9000}
 };
 
-/* ===== PRICE UPDATE ===== */
 function updatePrice(sel,key){
-  const size = sel.value;
-  document.getElementById(key+"Price").innerText =
-    priceTable[key][size] || 0;
+  document.getElementById(key+"Price").innerText=
+    priceTable[key][sel.value];
 }
 
-/* ===== ORDER ===== */
-function orderNow(product,key){
-  const price = document.getElementById(key+"Price").innerText;
-  const bg = document.getElementById("bg-"+key).value;
-  const font = document.getElementById("font-"+key).value;
-
-  const msg =
-`Hi SellFix Designing 👋
-I want to order:
-
-Product: ${product}
-Background Colour: ${bg}
-Font Colour: ${font}
-Final Price: ₹${price}
-
-Please guide me further.`;
-
-  window.open(
-    "https://wa.me/917030191819?text="+encodeURIComponent(msg),
-    "_blank"
-  );
+function orderNow(cat,variant,key){
+  const size=document.querySelector(`[onchange*="${key}"]`).value;
+  const price=document.getElementById(key+"Price").innerText;
+  const msg=`Hi SellFix Designing 👋
+Category: ${cat}
+Variant: ${variant}
+Size: ${size}
+Price: ₹${price}`;
+  window.open("https://wa.me/917030191819?text="+encodeURIComponent(msg));
 }
 
-/* ===== SHARE ===== */
-function shareCatalogue(){
-  const url = window.location.href;
-  if(navigator.share){
-    navigator.share({
-      title:"SellFix Designing Catalogue",
-      text:"Check out SellFix Designing Name Plate Catalogue",
-      url:url
-    });
-  }else{
-    navigator.clipboard.writeText(url);
-    alert("Link copied!");
-  }
-}
+/* DEFAULT PRICE LOAD */
+document.querySelectorAll(".size-select").forEach(sel=>{
+  const key=sel.getAttribute("onchange").match(/'(.+?)'/)[1];
+  sel.selectedIndex=0;
+  document.getElementById(key+"Price").innerText=
+    priceTable[key][sel.value];
+});
 </script>
 
 </body>
