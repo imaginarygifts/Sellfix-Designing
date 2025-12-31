@@ -445,6 +445,21 @@ document.querySelectorAll(".size-select").forEach(sel=>{
   <span id="closePopup">&times;</span>
   <img id="popupImg">
 </div>
+<script>
+function openImage(img){
+  document.getElementById("popupImg").src = img.src;
+  document.getElementById("imgPopup").style.display = "flex";
+}
 
+document.getElementById("closePopup").onclick = function(){
+  document.getElementById("imgPopup").style.display = "none";
+};
+
+document.getElementById("imgPopup").onclick = function(e){
+  if(e.target.id === "imgPopup"){
+    document.getElementById("imgPopup").style.display = "none";
+  }
+};
+</script>
 </body>
 </html>
