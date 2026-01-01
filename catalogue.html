@@ -121,7 +121,7 @@ select{
   color:#fff;
   cursor:pointer;
 }
-/* ===== YOUTUBE SHORTS CAROUSEL ===== */
+/* ===== CLEAN YOUTUBE SHORTS CAROUSEL ===== */
 .yt-section{
   margin:24px 0;
 }
@@ -145,15 +145,12 @@ select{
   overflow:hidden;
   background:#000;
 }
-.yt-card iframe{
-  width:100%;
-  height:100%;
-  border:none;
-}
-.yt-click{
+.yt-thumb{
   position:absolute;
   inset:0;
-  z-index:2;
+  background-size:cover;
+  background-position:center;
+  cursor:pointer;
 }
 .yt-play{
   position:absolute;
@@ -162,13 +159,19 @@ select{
   align-items:center;
   justify-content:center;
   font-size:48px;
-  color:white;
+  color:#fff;
   background:rgba(0,0,0,0.25);
-  z-index:3;
-  pointer-events:none;
 }
-.yt-card.playing .yt-play,
-.yt-card.playing .yt-click{
+.yt-card iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  display:none;
+}
+.yt-card.playing iframe{
+  display:block;
+}
+.yt-card.playing .yt-thumb{
   display:none;
 }
 </style>
@@ -177,8 +180,7 @@ select{
 <body>
 
 <div class="header">
-  <img src="sellfixlogo.png">
-  <span>SellFix Designing</span>
+  <img src="sellfixlogo1.png">
 </div>
 
 <div class="container">
@@ -189,47 +191,31 @@ select{
 
   <div class="yt-carousel">
 
+    <!-- VIDEO 1 -->
     <div class="yt-card" data-index="0">
-      <div class="yt-click"></div>
-      <div class="yt-play">▶</div>
-      <iframe
-        id="yt-0"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+      <div class="yt-thumb"
+        style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">
+        <div class="yt-play">▶</div>
+      </div>
+      <iframe data-video-id="gmuCGNFX-Rc"></iframe>
     </div>
 
+    <!-- VIDEO 2 -->
     <div class="yt-card" data-index="1">
-      <div class="yt-click"></div>
-      <div class="yt-play">▶</div>
-      <iframe
-        id="yt-1"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+      <div class="yt-thumb"
+        style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">
+        <div class="yt-play">▶</div>
+      </div>
+      <iframe data-video-id="gmuCGNFX-Rc"></iframe>
     </div>
 
+    <!-- VIDEO 3 -->
     <div class="yt-card" data-index="2">
-      <div class="yt-click"></div>
-      <div class="yt-play">▶</div>
-      <iframe
-        id="yt-2"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
-<div class="yt-card" data-index="3">
-      <div class="yt-click"></div>
-      <div class="yt-play">▶</div>
-      <iframe
-        id="yt-2"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+      <div class="yt-thumb"
+        style="background-image:url('https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg')">
+        <div class="yt-play">▶</div>
+      </div>
+     <iframe data-video-id="gmuCGNFX-Rc"></iframe>
     </div>
 
   </div>
@@ -575,60 +561,66 @@ document.getElementById("imgPopup").onclick = function(e){
 <script>
 let players = [];
 let activeIndex = null;
-let userInteracted = false;
+let userStarted = false;
 
-function onYouTubeIframeAPIReady(){
-  document.querySelectorAll(".yt-card iframe").forEach((iframe, index)=>{
+document.addEventListener("click", e=>{
+  const thumb = e.target.closest(".yt-thumb");
+  if(!thumb) return;
+
+  const card = thumb.closest(".yt-card");
+  const index = Number(card.dataset.index);
+  const iframe = card.querySelector("iframe");
+  const videoId = iframe.dataset.videoId;
+
+  userStarted = true;
+
+  // Pause all others
+  players.forEach(p=>p && p.pauseVideo());
+  document.querySelectorAll(".yt-card").forEach(c=>c.classList.remove("playing"));
+
+  // Load iframe only once
+  if(!iframe.src){
+    iframe.src =
+      `https://www.youtube.com/embed/${videoId}?enablejsapi=1&playsinline=1&controls=0&rel=0&modestbranding=1`;
+  }
+
+  card.classList.add("playing");
+
+  if(!players[index]){
     players[index] = new YT.Player(iframe, {
       events:{
-        onReady: ()=>observe(iframe, index)
+        onReady:e=>{
+          e.target.unMute();
+          e.target.setVolume(100);
+          e.target.playVideo();
+        }
       }
     });
-  });
-}
-
-// CLICK TO PLAY WITH SOUND
-document.addEventListener("click", e=>{
-  const card = e.target.closest(".yt-card");
-  if(!card) return;
-
-  const index = Number(card.dataset.index);
-  userInteracted = true;
-  play(index);
-});
-
-function play(index){
-  players.forEach((p,i)=>{
-    if(p && i!==index) p.pauseVideo();
-  });
-
-  const p = players[index];
-  if(!p) return;
-
-  p.unMute();
-  p.setVolume(100);
-  p.playVideo();
-
-  document.querySelectorAll(".yt-card").forEach(c=>c.classList.remove("playing"));
-  document.querySelectorAll(".yt-card")[index].classList.add("playing");
+  }else{
+    players[index].playVideo();
+  }
 
   activeIndex = index;
+});
+
+// Auto play on scroll (after first click)
+function observe(){
+  document.querySelectorAll(".yt-card").forEach((card,index)=>{
+    const iframe = card.querySelector("iframe");
+    const ob = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting && userStarted){
+          card.querySelector(".yt-thumb")?.click();
+        }else if(!entry.isIntersecting && activeIndex===index){
+          players[index]?.pauseVideo();
+        }
+      });
+    },{threshold:0.75});
+    ob.observe(card);
+  });
 }
 
-// AUTO PLAY NEXT ON SCROLL (AFTER FIRST CLICK)
-function observe(iframe, index){
-  const ob = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting && userInteracted){
-        play(index);
-      }else if(!e.isIntersecting && activeIndex===index){
-        players[index].pauseVideo();
-      }
-    });
-  },{threshold:0.75});
-
-  ob.observe(iframe);
-}
+window.addEventListener("load", observe);
 </script>
 </body>
 </html>
