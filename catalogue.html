@@ -151,6 +151,12 @@ select{
   height:100%;
   border:none;
 }
+.yt-card{ position:relative; }
+.yt-click{
+  position:absolute;
+  inset:0;
+  z-index:2;
+}
 </style>
 </head>
 
@@ -170,55 +176,61 @@ select{
   <div class="yt-carousel">
 
     <div class="yt-card">
-      <iframe
-        data-video-id="gmuCGNFX-Rc"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
+  <div class="yt-click" onclick="playByClick(0)"></div>
+  <iframe
+    id="yt-0"
+    src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
 <div class="yt-card">
-      <iframe
-        data-video-id="gmuCGNFX-Rc"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
+  <div class="yt-click" onclick="playByClick(0)"></div>
+  <iframe
+    id="yt-0"
+    src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
 <div class="yt-card">
-      <iframe
-        data-video-id="gmuCGNFX-Rc"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
+  <div class="yt-click" onclick="playByClick(0)"></div>
+  <iframe
+    id="yt-0"
+    src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
 <div class="yt-card">
-      <iframe
-        data-video-id="gmuCGNFX-Rc"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
+  <div class="yt-click" onclick="playByClick(0)"></div>
+  <iframe
+    id="yt-0"
+    src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
 
     <div class="yt-card">
-      <iframe
-        data-video-id="gmuCGNFX-Rc"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
+  <div class="yt-click" onclick="playByClick(0)"></div>
+  <iframe
+    id="yt-0"
+    src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
 
     <div class="yt-card">
-      <iframe
-        data-video-id="gmuCGNFX-Rc"
-        src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
-    </div>
+  <div class="yt-click" onclick="playByClick(0)"></div>
+  <iframe
+    id="yt-0"
+    src="https://www.youtube.com/embed/gmuCGNFX-Rc?enablejsapi=1&mute=1&playsinline=1&controls=1&rel=0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
 
   </div>
 </div>
@@ -559,40 +571,56 @@ document.getElementById("imgPopup").onclick = function(e){
 };
 </script>
 <script src="https://www.youtube.com/iframe_api"></script>
+
 <script>
 let players = [];
+let activeIndex = null;
+let userInteracted = false;
 
-function onYouTubeIframeAPIReady(){
-  document.querySelectorAll(".yt-card iframe").forEach((iframe, index)=>{
+function onYouTubeIframeAPIReady() {
+  document.querySelectorAll(".yt-card iframe").forEach((iframe, index) => {
     players[index] = new YT.Player(iframe, {
-      events:{
-        onReady: () => observeIframe(iframe, players[index])
+      events: {
+        onReady: () => observeVideo(iframe, index)
       }
     });
   });
 }
 
-function observeIframe(iframe, player){
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        pauseAllExcept(player);
-        player.playVideo();
-      }else{
-        player.pauseVideo();
+function playByClick(index) {
+  userInteracted = true;
+  playVideo(index, true);
+}
+
+function playVideo(index, withSound = false) {
+  players.forEach((p, i) => {
+    if (p && i !== index) p.pauseVideo();
+  });
+
+  const player = players[index];
+  if (!player) return;
+
+  if (withSound) {
+    player.unMute();
+    player.setVolume(100);
+  }
+
+  player.playVideo();
+  activeIndex = index;
+}
+
+function observeVideo(iframe, index) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && userInteracted) {
+        playVideo(index, true);
+      } else if (!entry.isIntersecting && activeIndex === index) {
+        players[index].pauseVideo();
       }
     });
-  }, { threshold:0.6 });
+  }, { threshold: 0.75 });
 
   observer.observe(iframe);
-}
-
-function pauseAllExcept(active){
-  players.forEach(p=>{
-    if(p && p !== active){
-      p.pauseVideo();
-    }
-  });
 }
 </script>
 </body>
