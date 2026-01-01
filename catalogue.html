@@ -122,57 +122,32 @@ select{
   cursor:pointer;
 }
 /* ===== CLEAN YOUTUBE SHORTS CAROUSEL ===== */
-.yt-section{
-  margin:24px 0;
-}
-.yt-title{
-  font-size:18px;
-  font-weight:600;
-  margin-bottom:12px;
-}
-.yt-carousel{
+.shorts-carousel-horizontal{
   display:flex;
   gap:14px;
   overflow-x:auto;
-  scroll-snap-type:x mandatory;
 }
-.yt-card{
+
+.shorts-slide{
   position:relative;
   flex:0 0 150px;
   height:275px;
-  scroll-snap-align:center;
   border-radius:16px;
   overflow:hidden;
   background:#000;
 }
-.yt-thumb{
+
+.shorts-thumbnail{
   position:absolute;
   inset:0;
   background-size:cover;
   background-position:center;
-  cursor:pointer;
-}
-.yt-play{
-  position:absolute;
-  inset:0;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:48px;
   color:#fff;
-  background:rgba(0,0,0,0.25);
-}
-.yt-card iframe{
-  width:100%;
-  height:100%;
-  border:none;
-  display:none;
-}
-.yt-card.playing iframe{
-  display:block;
-}
-.yt-card.playing .yt-thumb{
-  display:none;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -186,41 +161,35 @@ select{
 <div class="container">
 
 <!-- ===== YOUTUBE VIDEO SHOWCASE ===== -->
-<div class="yt-section">
-  <div class="yt-title">🎥 Our Work Videos</div>
+<div class="shorts-carousel-horizontal">
 
-  <div class="yt-carousel">
-
-    <!-- VIDEO 1 -->
-    <div class="yt-card" data-index="0">
-      <div class="yt-thumb"
-        style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">
-        <div class="yt-play">▶</div>
-      </div>
-      <iframe data-video-id="gmuCGNFX-Rc"></iframe>
+  <div class="shorts-slide" data-video-id="gmuCGNFX-Rc">
+    <div class="shorts-thumbnail"
+      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">
+      ▶
     </div>
-
-    <!-- VIDEO 2 -->
-    <div class="yt-card" data-index="1">
-      <div class="yt-thumb"
-        style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">
-        <div class="yt-play">▶</div>
-      </div>
-      <iframe data-video-id="gmuCGNFX-Rc"></iframe>
-    </div>
-
-    <!-- VIDEO 3 -->
-    <div class="yt-card" data-index="2">
-      <div class="yt-thumb"
-        style="background-image:url('https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg')">
-        <div class="yt-play">▶</div>
-      </div>
-     <iframe data-video-id="gmuCGNFX-Rc"></iframe>
-    </div>
-
   </div>
-</div>
 
+  <div class="shorts-slide" data-video-id="gmuCGNFX-Rc">
+    <div class="shorts-thumbnail"
+      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">
+      ▶
+    </div>
+  </div>
+<div class="shorts-slide" data-video-id="gmuCGNFX-Rc">
+    <div class="shorts-thumbnail"
+      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">
+      ▶
+    </div>
+  </div>
+<div class="shorts-slide" data-video-id="gmuCGNFX-Rc">
+    <div class="shorts-thumbnail"
+      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">
+      ▶
+    </div>
+  </div>
+
+</div>
 <h2>🪧 Name Plates</h2>
 
 <!-- ================= LED NAME PLATES ================= -->
@@ -557,53 +526,82 @@ document.getElementById("imgPopup").onclick = function(e){
 };
 </script>
 <script src="https://www.youtube.com/iframe_api"></script>
-
 <script>
 let players = [];
-let activeIndex = null;
-let userStarted = false;
 
-document.addEventListener("click", e => {
-  const thumb = e.target.closest(".yt-thumb");
-  if (!thumb) return;
+function onYouTubeIframeAPIReady() {
+  const slides = document.querySelectorAll('.shorts-slide');
 
-  const card = thumb.closest(".yt-card");
-  const index = Number(card.dataset.index);
-  const iframe = card.querySelector("iframe");
-  const videoId = iframe.dataset.videoId;
+  slides.forEach((slide, index) => {
+    const videoId = slide.dataset.videoId;
 
-  userStarted = true;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&playsinline=1&controls=0&rel=0`;
+    iframe.allow = "autoplay; encrypted-media";
+    iframe.style.display = "none";
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.frameBorder = "0";
 
-  // Pause others
-  players.forEach(p => p && p.pauseVideo());
-  document.querySelectorAll(".yt-card").forEach(c => c.classList.remove("playing"));
+    slide.appendChild(iframe);
 
-  // Inject iframe WITH autoplay
-  if (!iframe.src) {
-    iframe.src =
-      `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=0&mute=0&playsinline=1&controls=0&rel=0&modestbranding=1`;
-  }
-
-  card.classList.add("playing");
-
-  if (!players[index]) {
-    players[index] = new YT.Player(iframe, {
+    const player = new YT.Player(iframe, {
       events: {
-        onReady: e => {
-          // autoplay already started (muted)
-          setTimeout(() => {
-            e.target.unMute();
-            e.target.setVolume(100);
-          }, 300);
+        onReady: () => {
+          players[index] = player;
+
+          slide.addEventListener('click', () => {
+            players.forEach((p, i) => {
+              p.pauseVideo();
+              slides[i].querySelector('iframe').style.display = "none";
+              slides[i].querySelector('.shorts-thumbnail').style.display = "flex";
+            });
+
+            iframe.style.display = "block";
+            slide.querySelector('.shorts-thumbnail').style.display = "none";
+            player.playVideo();
+          });
         }
       }
     });
-  } else {
-    players[index].playVideo();
-  }
+  });
+}
 
-  activeIndex = index;
-});
+// autoplay most visible on scroll
+document.querySelector('.shorts-carousel-horizontal')
+  .addEventListener('scroll', () => {
+    const slides = document.querySelectorAll('.shorts-slide');
+    let maxVisible = 0;
+    let activeIndex = -1;
+
+    slides.forEach((slide, index) => {
+      const rect = slide.getBoundingClientRect();
+      const visible = Math.min(rect.right, window.innerWidth) -
+                      Math.max(rect.left, 0);
+
+      if (visible > maxVisible) {
+        maxVisible = visible;
+        activeIndex = index;
+      }
+    });
+
+    if (activeIndex >= 0) {
+      players.forEach((p, i) => {
+        const iframe = slides[i].querySelector('iframe');
+        const thumb = slides[i].querySelector('.shorts-thumbnail');
+
+        if (i === activeIndex) {
+          iframe.style.display = "block";
+          thumb.style.display = "none";
+          p.playVideo();
+        } else {
+          p.pauseVideo();
+          iframe.style.display = "none";
+          thumb.style.display = "flex";
+        }
+      });
+    }
+  }, { passive:true });
 </script>
 </body>
 </html>
