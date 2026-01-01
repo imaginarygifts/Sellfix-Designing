@@ -563,9 +563,9 @@ let players = [];
 let activeIndex = null;
 let userStarted = false;
 
-document.addEventListener("click", e=>{
+document.addEventListener("click", e => {
   const thumb = e.target.closest(".yt-thumb");
-  if(!thumb) return;
+  if (!thumb) return;
 
   const card = thumb.closest(".yt-card");
   const index = Number(card.dataset.index);
@@ -574,56 +574,36 @@ document.addEventListener("click", e=>{
 
   userStarted = true;
 
-  // Pause all others
-  players.forEach(p=>p && p.pauseVideo());
-  document.querySelectorAll(".yt-card").forEach(c=>c.classList.remove("playing"));
+  // Pause others
+  players.forEach(p => p && p.pauseVideo());
+  document.querySelectorAll(".yt-card").forEach(c => c.classList.remove("playing"));
 
-  // Load iframe only once
-  if(!iframe.src){
+  // Inject iframe WITH autoplay
+  if (!iframe.src) {
     iframe.src =
-      `https://www.youtube.com/embed/${videoId}?enablejsapi=1&playsinline=1&controls=0&rel=0&modestbranding=1`;
+      `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&mute=1&playsinline=1&controls=0&rel=0&modestbranding=1`;
   }
 
   card.classList.add("playing");
 
-  if(!players[index]){
+  if (!players[index]) {
     players[index] = new YT.Player(iframe, {
-      events:{
+      events: {
         onReady: e => {
-  e.target.mute();          // ✅ allow autoplay
-  e.target.playVideo();     // ✅ plays immediately
-  setTimeout(() => {
-    e.target.unMute();      // 🔊 turn sound ON
-    e.target.setVolume(100);
-  }, 200);
-}
+          // autoplay already started (muted)
+          setTimeout(() => {
+            e.target.unMute();
+            e.target.setVolume(100);
+          }, 300);
+        }
       }
     });
-  }else{
+  } else {
     players[index].playVideo();
   }
 
   activeIndex = index;
 });
-
-// Auto play on scroll (after first click)
-function observe(){
-  document.querySelectorAll(".yt-card").forEach((card,index)=>{
-    const iframe = card.querySelector("iframe");
-    const ob = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting && userStarted){
-          card.querySelector(".yt-thumb")?.click();
-        }else if(!entry.isIntersecting && activeIndex===index){
-          players[index]?.pauseVideo();
-        }
-      });
-    },{threshold:0.75});
-    ob.observe(card);
-  });
-}
-
-window.addEventListener("load", observe);
 </script>
 </body>
 </html>
