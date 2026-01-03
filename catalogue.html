@@ -15,8 +15,7 @@ body{margin:0;font-family:Inter;background:#000;color:#fff}
 /* HEADER */
 .header{
 position:sticky;top:0;z-index:1000;
-background:#0b0b0b;
-padding:10px 14px;
+background:#0b0b0b;padding:10px 14px;
 border-bottom:1px solid #1f1f1f
 }
 .header img{height:34px}
@@ -33,14 +32,12 @@ padding:8px 14px;border-radius:20px;
 font-size:13px;margin:14px 0
 }
 
-/* CARD */
 .card{
 background:#3a3a3a;border-radius:16px;
 padding:14px;margin-bottom:22px
 }
 .variant-title{font-weight:600;margin-bottom:8px}
 
-/* IMAGES */
 .images{display:flex;gap:10px;overflow-x:auto;margin-bottom:10px}
 .images img{
 width:100px;height:100px;
@@ -48,67 +45,29 @@ object-fit:cover;border-radius:10px;
 cursor:pointer
 }
 
-/* FORM */
 label{font-size:12px;color:#ddd;margin-top:10px;display:block}
 select{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:none;
-margin-top:4px;
+width:100%;padding:10px;border-radius:10px;
+border:none;margin-top:4px
 }
-.size-select{
-background:#f5e642;
-color:#000;font-weight:600
-}
+.size-select{background:#f5e642;color:#000;font-weight:600}
 
-/* PRICE */
 .price{font-size:18px;font-weight:600;margin-top:12px}
 
-/* ORDER */
 .order-btn{
-margin-top:14px;
-background:#25D366;
-color:#fff;
-text-align:center;
-padding:14px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-display:block;
+margin-top:14px;background:#25D366;color:#fff;
+text-align:center;padding:14px;border-radius:30px;
+text-decoration:none;font-weight:600;display:block
 }
 
-/* FLOATING SHARE */
-.floating-share{
-position:fixed;bottom:22px;right:18px;
-width:54px;height:54px;border-radius:50%;
-background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
-display:flex;align-items:center;justify-content:center;
-font-size:18px;box-shadow:0 8px 20px rgba(0,0,0,.4);
-z-index:9999;color:#fff;border:none
-}
-
-/* IMAGE POPUP */
-#imgPopup{
-position:fixed;inset:0;
-background:rgba(0,0,0,.85);
-display:none;align-items:center;justify-content:center;
-z-index:10000
-}
-#imgPopup img{max-width:90%;max-height:90%;border-radius:14px}
-#closePopup{
-position:absolute;top:18px;right:22px;
-font-size:32px;cursor:pointer
-}
-
-/* SHORTS */
+/* VIDEO */
 .shorts-carousel-horizontal{
-display:flex;gap:14px;overflow-x:auto;margin-top:14px
+display:flex;gap:14px;overflow-x:auto;margin:14px 0
 }
 .shorts-slide{
 flex:0 0 150px;height:275px;
-border-radius:16px;overflow:hidden;background:#000;
-position:relative
+border-radius:16px;overflow:hidden;
+background:#000;position:relative
 }
 .shorts-thumbnail{
 position:absolute;inset:0;
@@ -116,6 +75,15 @@ background-size:cover;background-position:center;
 display:flex;align-items:center;justify-content:center;
 font-size:48px;cursor:pointer
 }
+
+/* IMAGE POPUP */
+#imgPopup{
+position:fixed;inset:0;background:rgba(0,0,0,.85);
+display:none;align-items:center;justify-content:center;
+z-index:10000
+}
+#imgPopup img{max-width:90%;max-height:90%;border-radius:14px}
+#closePopup{position:absolute;top:18px;right:22px;font-size:32px}
 </style>
 </head>
 
@@ -127,19 +95,12 @@ font-size:48px;cursor:pointer
 
 <div class="container">
 
-  <!-- VIDEOS -->
   <div class="shorts-carousel-horizontal" id="videoSection"></div>
 
   <h2>🪧 Name Plates</h2>
-
   <div id="catalogue"></div>
 
 </div>
-
-<button class="floating-share"
-onclick="navigator.share({title:'SellFix Designing Catalogue',url:location.href})">
-<i class="fa-solid fa-share-nodes"></i>
-</button>
 
 <!-- IMAGE POPUP -->
 <div id="imgPopup">
@@ -148,216 +109,119 @@ onclick="navigator.share({title:'SellFix Designing Catalogue',url:location.href}
 </div>
 
 <script>
-let players = [];
-
-/* LOAD YOUTUBE API AFTER VIDEOS EXIST */
-function loadYouTubeAPI() {
-  if (window.YT && window.YT.Player) {
-    initYouTubePlayers();
-    return;
-  }
-  const tag = document.createElement("script");
-  tag.src = "https://www.youtube.com/iframe_api";
-  document.body.appendChild(tag);
-}
-
-/* YOUTUBE READY CALLBACK */
-function onYouTubeIframeAPIReady() {
-  initYouTubePlayers();
-}
-
-/* INIT PLAYERS */
-function initYouTubePlayers() {
-  const slides = document.querySelectorAll(".shorts-slide");
-
-  slides.forEach((slide, index) => {
-    const videoId = slide.dataset.videoId;
-
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&playsinline=1&controls=0&rel=0`;
-    iframe.allow = "autoplay; encrypted-media";
-    iframe.style.width = "100%";
-    iframe.style.height = "100%";
-    iframe.style.display = "none";
-    iframe.frameBorder = "0";
-
-    slide.appendChild(iframe);
-
-    const player = new YT.Player(iframe, {
-      events: {
-        onReady: () => {
-          players[index] = player;
-
-          slide.addEventListener("click", () => {
-            players.forEach((p, i) => {
-              if (p) p.pauseVideo();
-              slides[i].querySelector("iframe").style.display = "none";
-              slides[i].querySelector(".shorts-thumbnail").style.display = "flex";
-            });
-
-            iframe.style.display = "block";
-            slide.querySelector(".shorts-thumbnail").style.display = "none";
-            player.playVideo();
-          });
-        }
-      }
-    });
-  });
-}
-</script>
-
-<script>
-let productsData;
-let players=[];
+let DATA = null;
 
 /* IMAGE POPUP */
 function openImage(img){
-popupImg.src=img.src;
+popupImg.src = img.src;
 imgPopup.style.display="flex";
 }
 closePopup.onclick=()=>imgPopup.style.display="none";
-imgPopup.onclick=e=>{if(e.target.id==="imgPopup")imgPopup.style.display="none"};
+imgPopup.onclick=e=>{
+if(e.target.id==="imgPopup") imgPopup.style.display="none";
+};
 
-/* LOAD DATA */
+/* LOAD JSON SAFELY */
 fetch("products.json")
-.then(res=>res.json())
-.then(data=>{
-productsData=data;
-renderVideos();
-renderCatalogue();
+.then(r=>{
+  if(!r.ok) throw "products.json not found";
+  return r.json();
+})
+.then(json=>{
+  DATA = json;
+  renderVideos();
+  renderCatalogue();
+  loadYouTubeAPI();
+})
+.catch(err=>{
+  document.getElementById("catalogue").innerHTML =
+    "<p style='color:red'>❌ products.json missing or invalid</p>";
+  console.error(err);
 });
 
 /* VIDEOS */
-function renderVideos() {
-  const box = document.getElementById("videoSection");
-
-  productsData.videos.forEach(v => {
-    box.innerHTML += `
-      <div class="shorts-slide" data-video-id="${v.videoId}">
-        <div class="shorts-thumbnail"
-          style="background-image:url('${v.thumbnail}')">
-          ▶
-        </div>
-      </div>`;
-  });
-
-  // ✅ VERY IMPORTANT
-  loadYouTubeAPI();
+function renderVideos(){
+const box = document.getElementById("videoSection");
+DATA.videos.forEach(v=>{
+box.innerHTML += `
+<div class="shorts-slide" data-video-id="${v.videoId}">
+  <div class="shorts-thumbnail"
+   style="background-image:url('${v.thumbnail}')">▶</div>
+</div>`;
+});
 }
 
 /* CATALOGUE */
 function renderCatalogue(){
-const wrap=document.getElementById("catalogue");
+const wrap = document.getElementById("catalogue");
 
-productsData.categories.forEach(cat=>{
-wrap.innerHTML+=`<div class="sub-tag">${cat.name}</div>`;
+DATA.categories.forEach(cat=>{
+wrap.innerHTML += `<div class="sub-tag">${cat.name}</div>`;
 
 cat.products.forEach(p=>{
 let imgs="";
-if(p.images){
-p.images.forEach(i=>{
+(p.images||[]).forEach(i=>{
 imgs+=`<img src="${i}" onclick="openImage(this)">`;
 });
-}
 
-let sizeOptions="";
+let sizes="";
 Object.keys(p.sizes).forEach(s=>{
-sizeOptions+=`<option>${s}</option>`;
+sizes+=`<option>${s}</option>`;
 });
-
-let bgOptions=p.backgroundColours.map(c=>`<option>${c}</option>`).join("");
-let fontOptions=p.fontColours.map(c=>`<option>${c}</option>`).join("");
 
 wrap.innerHTML+=`
 <div class="card">
 <div class="variant-title">${p.title}</div>
-
 ${imgs?`<div class="images">${imgs}</div>`:""}
 
 <label>Size</label>
-<select class="size-select" onchange="updatePrice(this,'${p.key}')">
-${sizeOptions}
+<select class="size-select" onchange="this.nextElementSibling.innerHTML='₹ '+${JSON.stringify(p.sizes)}[this.value]">
+${sizes}
 </select>
 
-<label>Background Colour</label>
-<select id="bg-${p.key}">${bgOptions}</select>
-
-<label>Font Colour</label>
-<select id="font-${p.key}">${fontOptions}</select>
-
-<div class="price">₹ <span id="${p.key}Price"></span></div>
+<div class="price">₹ ${Object.values(p.sizes)[0]}</div>
 
 <a class="order-btn"
-onclick="orderNow('${cat.name}','${p.title}','${p.key}')">
-Order on WhatsApp
-</a>
+href="https://wa.me/${DATA.whatsappNumber}?text=${encodeURIComponent(p.title)}"
+target="_blank">Order on WhatsApp</a>
 </div>`;
 });
 });
-
-initPrices();
-}
-
-/* PRICE */
-function updatePrice(sel,key){
-document.getElementById(key+"Price").innerText=
-productsData.categories
-.flatMap(c=>c.products)
-.find(p=>p.key===key).sizes[sel.value];
-}
-
-function initPrices(){
-document.querySelectorAll(".size-select").forEach(sel=>{
-const key=sel.getAttribute("onchange").match(/'(.*?)'/)[1];
-updatePrice(sel,key);
-});
-}
-
-/* ORDER */
-function orderNow(category,title,key){
-const size=document.querySelector(`[onchange*="${key}"]`).value;
-const bg=document.getElementById("bg-"+key).value;
-const font=document.getElementById("font-"+key).value;
-const price=document.getElementById(key+"Price").innerText;
-
-const msg=
-`Hi SellFix Designing 👋
-Category: ${category}
-Product: ${title}
-Size: ${size}
-Background: ${bg}
-Font: ${font}
-Price: ₹${price}`;
-
-window.open(`https://wa.me/${productsData.whatsappNumber}?text=`+encodeURIComponent(msg));
 }
 
 /* YOUTUBE */
+function loadYouTubeAPI(){
+const tag=document.createElement("script");
+tag.src="https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+}
+
+let players=[];
 function onYouTubeIframeAPIReady(){
-document.querySelectorAll('.shorts-slide').forEach((slide,i)=>{
+document.querySelectorAll(".shorts-slide").forEach((slide,i)=>{
 const id=slide.dataset.videoId;
-const iframe=document.createElement('iframe');
-iframe.src=`https://www.youtube.com/embed/${id}?enablejsapi=1&playsinline=1&controls=0`;
-iframe.style.display="none";
+const iframe=document.createElement("iframe");
+iframe.src=`https://www.youtube.com/embed/${id}?enablejsapi=1&controls=0`;
 iframe.style.width="100%";
 iframe.style.height="100%";
+iframe.style.display="none";
 slide.appendChild(iframe);
 
-const player=new YT.Player(iframe,{events:{
+const player=new YT.Player(iframe,{
+events:{
 onReady:()=>{
 players[i]=player;
 slide.onclick=()=>{
-players.forEach((p,j)=>{
-p.pauseVideo();
-document.querySelectorAll(".shorts-thumbnail")[j].style.display="flex";
-document.querySelectorAll("iframe")[j].style.display="none";
-});
+players.forEach(p=>p&&p.pauseVideo());
+document.querySelectorAll("iframe").forEach(f=>f.style.display="none");
+document.querySelectorAll(".shorts-thumbnail").forEach(t=>t.style.display="flex");
 iframe.style.display="block";
 slide.querySelector(".shorts-thumbnail").style.display="none";
 player.playVideo();
 };
 }
-}});
+}
+});
 });
 }
 </script>
