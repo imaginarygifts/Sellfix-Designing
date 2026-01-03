@@ -147,7 +147,64 @@ onclick="navigator.share({title:'SellFix Designing Catalogue',url:location.href}
   <img id="popupImg">
 </div>
 
-<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+let players = [];
+
+/* LOAD YOUTUBE API AFTER VIDEOS EXIST */
+function loadYouTubeAPI() {
+  if (window.YT && window.YT.Player) {
+    initYouTubePlayers();
+    return;
+  }
+  const tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.body.appendChild(tag);
+}
+
+/* YOUTUBE READY CALLBACK */
+function onYouTubeIframeAPIReady() {
+  initYouTubePlayers();
+}
+
+/* INIT PLAYERS */
+function initYouTubePlayers() {
+  const slides = document.querySelectorAll(".shorts-slide");
+
+  slides.forEach((slide, index) => {
+    const videoId = slide.dataset.videoId;
+
+    const iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&playsinline=1&controls=0&rel=0`;
+    iframe.allow = "autoplay; encrypted-media";
+    iframe.style.width = "100%";
+    iframe.style.height = "100%";
+    iframe.style.display = "none";
+    iframe.frameBorder = "0";
+
+    slide.appendChild(iframe);
+
+    const player = new YT.Player(iframe, {
+      events: {
+        onReady: () => {
+          players[index] = player;
+
+          slide.addEventListener("click", () => {
+            players.forEach((p, i) => {
+              if (p) p.pauseVideo();
+              slides[i].querySelector("iframe").style.display = "none";
+              slides[i].querySelector(".shorts-thumbnail").style.display = "flex";
+            });
+
+            iframe.style.display = "block";
+            slide.querySelector(".shorts-thumbnail").style.display = "none";
+            player.playVideo();
+          });
+        }
+      }
+    });
+  });
+}
+</script>
 
 <script>
 let productsData;
@@ -171,14 +228,21 @@ renderCatalogue();
 });
 
 /* VIDEOS */
-function renderVideos(){
-const box=document.getElementById("videoSection");
-productsData.videos.forEach(v=>{
-box.innerHTML+=`
-<div class="shorts-slide" data-video-id="${v.videoId}">
-<div class="shorts-thumbnail" style="background-image:url('${v.thumbnail}')">▶</div>
-</div>`;
-});
+function renderVideos() {
+  const box = document.getElementById("videoSection");
+
+  productsData.videos.forEach(v => {
+    box.innerHTML += `
+      <div class="shorts-slide" data-video-id="${v.videoId}">
+        <div class="shorts-thumbnail"
+          style="background-image:url('${v.thumbnail}')">
+          ▶
+        </div>
+      </div>`;
+  });
+
+  // ✅ VERY IMPORTANT
+  loadYouTubeAPI();
 }
 
 /* CATALOGUE */
