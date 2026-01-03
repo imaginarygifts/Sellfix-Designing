@@ -1,14 +1,36 @@
 {
+  "catalogueTitle": "SellFix Designing | Catalogue",
+  "whatsappNumber": "917030191819",
+
+  "videos": [
+    {
+      "videoId": "gmuCGNFX-Rc",
+      "thumbnail": "https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg"
+    },
+    {
+      "videoId": "gmuCGNFX-Rc",
+      "thumbnail": "https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg"
+    },
+    {
+      "videoId": "gmuCGNFX-Rc",
+      "thumbnail": "https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg"
+    },
+    {
+      "videoId": "gmuCGNFX-Rc",
+      "thumbnail": "https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg"
+    }
+  ],
+
   "categories": [
     {
-      "id": "led",
       "name": "LED Name Plates",
       "products": [
         {
           "key": "whiteShadow",
           "title": "White Shadow LED Name Plate",
-          "category": "LED Name Plate",
           "images": [
+            "https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA",
+            "https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA",
             "https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"
           ],
           "sizes": {
@@ -22,117 +44,132 @@
             "24x24": 6100,
             "24x30": 7200,
             "24x36": 8500
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         },
+
         {
           "key": "shadowLed",
           "title": "Shadow LED Name Plate",
-          "category": "LED Name Plate",
-          "images": [],
           "sizes": {
             "8x12": 1000,
             "12x18": 1800,
             "12x24": 2600,
             "18x24": 3400,
             "24x30": 4800
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         },
+
         {
           "key": "ledLetters",
           "title": "LED Letters Name Plate",
-          "category": "LED Name Plate",
-          "images": [],
           "sizes": {
             "12x18": 2200,
             "12x24": 3000,
             "18x24": 4200,
             "24x30": 6000
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         },
+
         {
           "key": "cutoutLed",
           "title": "Cutout LED Name Plate",
-          "category": "LED Name Plate",
-          "images": [],
           "sizes": {
             "12x18": 2400,
             "12x24": 3200,
             "18x24": 4500,
             "24x30": 6200,
             "24x36": 7800
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         }
       ]
     },
+
     {
-      "id": "acrylic",
       "name": "Acrylic Name Plates",
       "products": [
         {
           "key": "acrylicBlack",
           "title": "Glossy Black Acrylic",
-          "category": "Acrylic Name Plate",
           "sizes": {
             "8x12": 900,
             "12x18": 1600,
             "12x24": 2400
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         },
+
         {
           "key": "acrylicWhite",
           "title": "Glossy White Acrylic",
-          "category": "Acrylic Name Plate",
           "sizes": {
             "8x12": 850,
             "12x18": 1500,
             "12x24": 2300
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         },
+
         {
           "key": "acrylicWood",
           "title": "Wood Texture Acrylic",
-          "category": "Acrylic Name Plate",
           "sizes": {
             "12x18": 1700,
             "12x24": 2600,
             "18x24": 3500
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         }
       ]
     },
+
     {
-      "id": "resin",
       "name": "Resin Name Plates",
       "products": [
         {
           "key": "resinCircle",
           "title": "Circle Resin Name Plate",
-          "category": "Resin Name Plate",
           "sizes": {
             "12x12": 2200,
             "18x18": 3800,
             "24x24": 5500
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         },
+
         {
           "key": "resinRect",
           "title": "Rectangle Resin Name Plate",
-          "category": "Resin Name Plate",
           "sizes": {
             "12x18": 2600,
             "12x24": 3600,
             "18x24": 4800
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         },
+
         {
           "key": "resinAgate",
           "title": "Agate Resin Name Plate",
-          "category": "Resin Name Plate",
           "sizes": {
             "12x18": 4200,
             "18x24": 6500,
             "24x30": 9000
-          }
+          },
+          "backgroundColours": ["Black", "White", "Brown", "Wooden"],
+          "fontColours": ["Gold", "Rose Gold", "Silver", "Black", "White"]
         }
       ]
     }
