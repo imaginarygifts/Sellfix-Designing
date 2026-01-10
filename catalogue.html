@@ -1,445 +1,508 @@
-<!DOCTYPE html>  <html lang="en">    <head>    
-<meta charset="UTF-8">    
-<title>SellFix Designing | Catalogue</title>    
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">    
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>  <style>    
-*{box-sizing:border-box}    
-body{margin:0;font-family:Inter;background:#000;color:#fff}    /* HEADER */
-.header{
-position:sticky;top:0;z-index:1000;
-background:#0b0b0b;
-display:flex;align-items:center;gap:10px;
-padding:10px 14px;border-bottom:1px solid #1f1f1f
-}
-.header img{height:34px}
-.header span{font-weight:600}
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>SellFix Designing | Catalogue</title>  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>  <style>  
+*{box-sizing:border-box}  
+body{margin:0;font-family:Inter;background:#000;color:#fff}  
+  
+/* HEADER */  
+.header{  
+  position:sticky;top:0;z-index:1000;  
+  background:#0b0b0b;  
+  display:flex;align-items:center;gap:10px;  
+  padding:10px 14px;border-bottom:1px solid #1f1f1f  
+}  
+.header img{height:34px}  
+.header span{font-weight:600}  
+  
+/* CONTAINER */  
+.container{max-width:460px;margin:auto;padding:0px 16px 40px}  
+  
+h2{font-size:20px;margin:18px 0}  
+  
+  
+  
+.sub-tag{  
+  display:inline-block;  
+background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);  
+  color:#fff;border:none;  
+  padding:8px 14px;border-radius:20px;  
+  font-size:13px;margin-bottom:12px  
+}  
+  
+/* CARD */  
+.card{  
+  background:#3a3a3a;border-radius:16px;  
+  padding:14px;margin-bottom:22px  
+}  
+.variant-title{font-weight:600;margin-bottom:6px}  
+  
+/* IMAGES */  
+.images{display:flex;gap:10px;overflow-x:auto;margin-bottom:10px}  
+.images img{width:100px;height:100px;object-fit:cover;border-radius:10px}  
+  
+/* FORM */  
+label{font-size:12px;color:#aaa;margin-top:10px;display:block}  
+  
+/* SIZE DROPDOWN */  
+.size-select{  
+  width:100%;  
+  padding:10px;  
+  border-radius:10px;  
+  border:none;  
+  margin-top:4px;  
+  background:#f5e642;  
+  color:#000;  
+  font-weight:600;  
+}  
+  
+/* NORMAL DROPDOWN */  
+select{  
+  width:100%;  
+  padding:10px;  
+  border-radius:10px;  
+  border:none;  
+  margin-top:4px;  
+}  
+  
+/* PRICE */  
+.price{font-size:18px;font-weight:600;margin-top:12px}  
+  
+/* ORDER */  
+.order-btn{  
+  margin-top:14px;  
+  background:#25D366;  
+  color:#fff;  
+  text-align:center;  
+  padding:14px;  
+  border-radius:30px;  
+  text-decoration:none;  
+  font-weight:600;  
+  display:block;  
+}  
+  
+/* FLOATING SHARE */  
+.floating-share{  
+  position:fixed;bottom:22px;right:18px;  
+  width:54px;height:54px;border-radius:50%;  
+  background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);  
+  color:#fff;border:none;  
+  display:flex;align-items:center;justify-content:center;  
+  font-size:18px;box-shadow:0 8px 20px rgba(0,0,0,.4);  
+  z-index:9999;cursor:pointer  
+}  
+/* IMAGE ZOOM POPUP */  
+#imgPopup{  
+  position:fixed;  
+  inset:0;  
+  background:rgba(0,0,0,0.85);  
+  display:flex;  
+  align-items:center;  
+  justify-content:center;  
+  z-index:10000;  
+}  
+#imgPopup img{  
+  max-width:90%;  
+  max-height:90%;  
+  border-radius:14px;  
+}  
+#closePopup{  
+  position:absolute;  
+  top:18px;  
+  right:22px;  
+  font-size:32px;  
+  color:#fff;  
+  cursor:pointer;  
+}  
+/* ===== CLEAN YOUTUBE SHORTS CAROUSEL ===== */  
+.shorts-carousel-horizontal{  
+  display:flex;  
+  gap:14px;  
+  overflow-x:auto;  
+}  
+  
+.shorts-slide{  
+  position:relative;  
+  flex:0 0 150px;  
+  height:275px;  
+  border-radius:16px;  
+  overflow:hidden;  
+  background:#000;  
+}  
+  
+.shorts-thumbnail{  
+  position:absolute;  
+  inset:0;  
+  background-size:cover;  
+  background-position:center;  
+  display:flex;  
+  align-items:center;  
+  justify-content:center;  
+  font-size:48px;  
+  color:#fff;  
+  cursor:pointer;  
+}  
+</style>  </head>  <body>  <div class="header">  
+  <img src="sellixlogo1.png">  
+</div>  <div class="container">  <!-- ===== YOUTUBE VIDEO SHOWCASE ===== -->  <div class="shorts-carousel-horizontal">    <div class="shorts-slide" data-video-id="gmuCGNFX-Rc">  
+    <div class="shorts-thumbnail"  
+      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">  
+      ▶  
+    </div>  
+  </div>    <div class="shorts-slide" data-video-id="gmuCGNFX-Rc">  
+    <div class="shorts-thumbnail"  
+      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">  
+      ▶  
+    </div>  
+  </div>  
+<div class="shorts-slide" data-video-id="gmuCGNFX-Rc">  
+    <div class="shorts-thumbnail"  
+      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">  
+      ▶  
+    </div>  
+  </div>  
+<div class="shorts-slide" data-video-id="gmuCGNFX-Rc">  
+    <div class="shorts-thumbnail"  
+      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">  
+      ▶  
+    </div>  
+  </div>  </div>  
+<h2>🪧 Name Plates</h2>  <!-- ================= LED NAME PLATES ================= -->  <div class="sub-tag">LED Name Plates</div>  <!-- WHITE SHADOW -->  <div class="card">  
+  <div class="variant-title">White Shadow LED Name Plate</div>  
+  <div class="images">  
+    <img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"  
+onclick="openImage(this)">  
+<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">  
+<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">  
+<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">  
+<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">  
+<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">  
+  </div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'whiteShadow')">
+<option>8x12</option><option>12x12</option><option>12x18</option>
+<option>12x24</option><option>18x18</option><option>18x24</option>
+<option>18x30</option><option>24x24</option><option>24x30</option><option>24x36</option>
+</select>
 
-/* CONTAINER */
-.container{max-width:460px;margin:auto;padding:0px 16px 40px}
-
-h2{font-size:20px;margin:18px 0}
-
-.sub-tag{
-display:inline-block;
-background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
-color:#fff;border:none;
-padding:8px 14px;border-radius:20px;
-font-size:13px;margin-bottom:12px
-}
-
-/* CARD */
-.card{
-background:#3a3a3a;border-radius:16px;
-padding:14px;margin-bottom:22px
-}
-.variant-title{font-weight:600;margin-bottom:6px}
-
-/* IMAGES */
-.images{display:flex;gap:10px;overflow-x:auto;margin-bottom:10px}
-.images img{width:100px;height:100px;object-fit:cover;border-radius:10px}
-
-/* FORM */
-label{font-size:12px;color:#aaa;margin-top:10px;display:block}
-
-/* SIZE DROPDOWN */
-.size-select{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:none;
-margin-top:4px;
-background:#f5e642;
-color:#000;
-font-weight:600;
-}
-
-/* NORMAL DROPDOWN */
-select{
-width:100%;
-padding:10px;
-border-radius:10px;
-border:none;
-margin-top:4px;
-}
-
-/* PRICE */
-.price{font-size:18px;font-weight:600;margin-top:12px}
-
-/* ORDER */
-.order-btn{
-margin-top:14px;
-background:#25D366;
-color:#fff;
-text-align:center;
-padding:14px;
-border-radius:30px;
-text-decoration:none;
-font-weight:600;
-display:block;
-}
-
-/* FLOATING SHARE /
-.floating-share{
-position:fixed;bottom:22px;right:18px;
-width:54px;height:54px;border-radius:50%;
-background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
-color:#fff;border:none;
-display:flex;align-items:center;justify-content:center;
-font-size:18px;box-shadow:0 8px 20px rgba(0,0,0,.4);
-z-index:9999;cursor:pointer
-}
-/ IMAGE ZOOM POPUP /
-#imgPopup{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.85);
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:10000;
-}
-#imgPopup img{
-max-width:90%;
-max-height:90%;
-border-radius:14px;
-}
-#closePopup{
-position:absolute;
-top:18px;
-right:22px;
-font-size:32px;
-color:#fff;
-cursor:pointer;
-}
-/ ===== CLEAN YOUTUBE SHORTS CAROUSEL ===== */
-.shorts-carousel-horizontal{
-display:flex;
-gap:14px;
-overflow-x:auto;
-}
-
-.shorts-slide{
-position:relative;
-flex:0 0 150px;
-height:275px;
-border-radius:16px;
-overflow:hidden;
-background:#000;
-}
-
-.shorts-thumbnail{
-position:absolute;
-inset:0;
-background-size:cover;
-background-position:center;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:48px;
-color:#fff;
-cursor:pointer;
-}
-</style>  </head>  <body>  <div class="header">
-<img src="sellixlogo1.png">
-
-</div>  <div class="container">  <!-- ===== YOUTUBE VIDEO SHOWCASE ===== -->  <div class="shorts-carousel-horizontal">    <div class="shorts-slide" data-video-id="gmuCGNFX-Rc">    
-    <div class="shorts-thumbnail"    
-      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">    
-      ▶    
-    </div>    
-  </div>    <div class="shorts-slide" data-video-id="gmuCGNFX-Rc">    
-    <div class="shorts-thumbnail"    
-      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">    
-      ▶    
-    </div>    
-  </div>    
-<div class="shorts-slide" data-video-id="gmuCGNFX-Rc">    
-    <div class="shorts-thumbnail"    
-      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">    
-      ▶    
-    </div>    
-  </div>    
-<div class="shorts-slide" data-video-id="gmuCGNFX-Rc">    
-    <div class="shorts-thumbnail"    
-      style="background-image:url('https://img.youtube.com/vi/gmuCGNFX-Rc/maxresdefault.jpg')">    
-      ▶    
-    </div>    
-  </div>  </div>    
-<h2>🪧 Name Plates</h2>  <!-- ================= LED NAME PLATES ================= -->  <div class="sub-tag">LED Name Plates</div>  <!-- WHITE SHADOW -->  <div class="card">    
-  <div class="variant-title">White Shadow LED Name Plate</div>    
-  <div class="images">    
-    <img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"    
-onclick="openImage(this)">    
-<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">    
-<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">    
-<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">    
-<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">    
-<img src="https://drive.google.com/uc?export=view&id=1oyr75A4X6azJRo2w8cuiMTT3vr9KovMA"onclick="openImage(this)">    
-  </div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'whiteShadow')">  
-<option>8x12</option><option>12x12</option><option>12x18</option>  
-<option>12x24</option><option>18x18</option><option>18x24</option>  
-<option>18x30</option><option>24x24</option><option>24x30</option><option>24x36</option>  
-</select>  <label>Background Colour</label>
+<label>Background Colour</label>
 <select id="bg-whiteShadow">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-whiteShadow">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="whiteShadowPrice"></span></div>    <a class="order-btn" onclick="orderNow('LED Name Plate','White Shadow LED','whiteShadow')">    
-    Order on WhatsApp    
-  </a>    
-</div>  <!-- SHADOW LED -->  <div class="card">    
-  <div class="variant-title">Shadow LED Name Plate</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'shadowLed')">  
-<option>8x12</option><option>12x18</option><option>12x24</option>  
-<option>18x24</option><option>24x30</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="whiteShadowPrice"></span></div>    <a class="order-btn" onclick="orderNow('LED Name Plate','White Shadow LED','whiteShadow')">  
+    Order on WhatsApp  
+  </a>  
+</div>  <!-- SHADOW LED -->  <div class="card">  
+  <div class="variant-title">Shadow LED Name Plate</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'shadowLed')">
+<option>8x12</option><option>12x18</option><option>12x24</option>
+<option>18x24</option><option>24x30</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-shadowLed">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-shadowLed">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="shadowLedPrice"></span></div>    <a class="order-btn" onclick="orderNow('LED Name Plate','Shadow LED','shadowLed')">    
-    Order on WhatsApp    
-  </a>    
-</div>  <!-- LED LETTERS -->  <div class="card">    
-  <div class="variant-title">LED Letters Name Plate</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'ledLetters')">  
-<option>12x18</option><option>12x24</option><option>18x24</option><option>24x30</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="shadowLedPrice"></span></div>    <a class="order-btn" onclick="orderNow('LED Name Plate','Shadow LED','shadowLed')">  
+    Order on WhatsApp  
+  </a>  
+</div>  <!-- LED LETTERS -->  <div class="card">  
+  <div class="variant-title">LED Letters Name Plate</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'ledLetters')">
+<option>12x18</option><option>12x24</option><option>18x24</option><option>24x30</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-ledLetters">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-ledLetters">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="ledLettersPrice"></span></div>    <a class="order-btn" onclick="orderNow('LED Name Plate','LED Letters','ledLetters')">    
-    Order on WhatsApp    
-  </a>    
-</div>  <!-- CUTOUT LED -->  <div class="card">    
-  <div class="variant-title">Cutout LED Name Plate</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'cutoutLed')">  
-<option>12x18</option><option>12x24</option><option>18x24</option><option>24x30</option><option>24x36</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="ledLettersPrice"></span></div>    <a class="order-btn" onclick="orderNow('LED Name Plate','LED Letters','ledLetters')">  
+    Order on WhatsApp  
+  </a>  
+</div>  <!-- CUTOUT LED -->  <div class="card">  
+  <div class="variant-title">Cutout LED Name Plate</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'cutoutLed')">
+<option>12x18</option><option>12x24</option><option>18x24</option><option>24x30</option><option>24x36</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-cutoutLed">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-cutoutLed">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="cutoutLedPrice"></span></div>    <a class="order-btn" onclick="orderNow('LED Name Plate','Cutout LED','cutoutLed')">    
-    Order on WhatsApp    
-  </a>    
-</div>  <!-- ================= ACRYLIC ================= -->  <div class="sub-tag">Acrylic Name Plates</div>  <div class="card">    
-  <div class="variant-title">Glossy Black Acrylic</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'acrylicBlack')">  
-<option>8x12</option><option>12x18</option><option>12x24</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="cutoutLedPrice"></span></div>    <a class="order-btn" onclick="orderNow('LED Name Plate','Cutout LED','cutoutLed')">  
+    Order on WhatsApp  
+  </a>  
+</div>  <!-- ================= ACRYLIC ================= -->  <div class="sub-tag">Acrylic Name Plates</div>  <div class="card">  
+  <div class="variant-title">Glossy Black Acrylic</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'acrylicBlack')">
+<option>8x12</option><option>12x18</option><option>12x24</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-acrylicBlack">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-acrylicBlack">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="acrylicBlackPrice"></span></div>  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Glossy Black','acrylicBlack')">Order</a>  </div>  <div class="card">    
-  <div class="variant-title">Glossy White Acrylic</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'acrylicWhite')">  
-<option>8x12</option><option>12x18</option><option>12x24</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="acrylicBlackPrice"></span></div>  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Glossy Black','acrylicBlack')">Order</a>
+
+</div>  <div class="card">  
+  <div class="variant-title">Glossy White Acrylic</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'acrylicWhite')">
+<option>8x12</option><option>12x18</option><option>12x24</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-acrylicWhite">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-acrylicWhite">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="acrylicWhitePrice"></span></div>  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Glossy White','acrylicWhite')">Order</a>  </div>  <div class="card">    
-  <div class="variant-title">Wood Texture Acrylic</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'acrylicWood')">  
-<option>12x18</option><option>12x24</option><option>18x24</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="acrylicWhitePrice"></span></div>  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Glossy White','acrylicWhite')">Order</a>
+
+</div>  <div class="card">  
+  <div class="variant-title">Wood Texture Acrylic</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'acrylicWood')">
+<option>12x18</option><option>12x24</option><option>18x24</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-acrylicWood">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-acrylicWood">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="acrylicWoodPrice"></span></div>  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Wood Texture','acrylicWood')">Order</a>  </div>  <!-- ================= RESIN ================= -->  <div class="sub-tag">Resin Name Plates</div>  <div class="card">    
-  <div class="variant-title">Circle Resin Name Plate</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'resinCircle')">  
-<option>12x12</option><option>18x18</option><option>24x24</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="acrylicWoodPrice"></span></div>  <a class="order-btn" onclick="orderNow('Acrylic Name Plate','Wood Texture','acrylicWood')">Order</a>
+
+</div>  <!-- ================= RESIN ================= -->  <div class="sub-tag">Resin Name Plates</div>  <div class="card">  
+  <div class="variant-title">Circle Resin Name Plate</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'resinCircle')">
+<option>12x12</option><option>18x18</option><option>24x24</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-resinCircle">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-resinCircle">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="resinCirclePrice"></span></div>  <a class="order-btn" onclick="orderNow('Resin Name Plate','Circle','resinCircle')">Order</a>  </div>  <div class="card">    
-  <div class="variant-title">Rectangle Resin Name Plate</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'resinRect')">  
-<option>12x18</option><option>12x24</option><option>18x24</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="resinCirclePrice"></span></div>  <a class="order-btn" onclick="orderNow('Resin Name Plate','Circle','resinCircle')">Order</a>
+
+</div>  <div class="card">  
+  <div class="variant-title">Rectangle Resin Name Plate</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'resinRect')">
+<option>12x18</option><option>12x24</option><option>18x24</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-resinRect">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-resinRect">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="resinRectPrice"></span></div>  <a class="order-btn" onclick="orderNow('Resin Name Plate','Rectangle','resinRect')">Order</a>  </div>  <div class="card">    
-  <div class="variant-title">Agate Resin Name Plate</div>  <label>Size</label>  
-<select class="size-select" onchange="updatePrice(this,'resinAgate')">  
-<option>12x18</option><option>18x24</option><option>24x30</option>  
-</select>  <label>Background Colour</label>
+  <div class="price">₹ <span id="resinRectPrice"></span></div>  <a class="order-btn" onclick="orderNow('Resin Name Plate','Rectangle','resinRect')">Order</a>
+
+</div>  <div class="card">  
+  <div class="variant-title">Agate Resin Name Plate</div>  <label>Size</label>
+<select class="size-select" onchange="updatePrice(this,'resinAgate')">
+<option>12x18</option><option>18x24</option><option>24x30</option>
+</select>
+
+<label>Background Colour</label>
 <select id="bg-resinAgate">
+<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>
+</select>
 
-<option>Black</option><option>White</option><option>Brown</option><option>Wooden</option>  
-</select>  <label>Font Colour</label>
+<label>Font Colour</label>
 <select id="font-resinAgate">
+<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>
+</select>
 
-<option>Gold</option><option>Rose Gold</option><option>Silver</option><option>Black</option><option>White</option>  
-</select>    <div class="price">₹ <span id="resinAgatePrice"></span></div>  <a class="order-btn" onclick="orderNow('Resin Name Plate','Agate','resinAgate')">Order</a>  </div>  </div>  <button class="floating-share" onclick="navigator.share({title:'SellFix Designing Catalogue',url:location.href})">    
-  <i class="fa-solid fa-share-nodes"></i>    
-</button>  <script>    
-const priceTable={    
-  whiteShadow:{"8x12":1200,"12x12":1500,"12x18":2200,"12x24":3000,"18x18":3600,"18x24":4300,"18x30":5200,"24x24":6100,"24x30":7200,"24x36":8500},    
-  shadowLed:{"8x12":1000,"12x18":1800,"12x24":2600,"18x24":3400,"24x30":4800},    
-  ledLetters:{"12x18":2200,"12x24":3000,"18x24":4200,"24x30":6000},    
-  cutoutLed:{"12x18":2400,"12x24":3200,"18x24":4500,"24x30":6200,"24x36":7800},    
-  acrylicBlack:{"8x12":900,"12x18":1600,"12x24":2400},    
-  acrylicWhite:{"8x12":850,"12x18":1500,"12x24":2300},    
-  acrylicWood:{"12x18":1700,"12x24":2600,"18x24":3500},    
-  resinCircle:{"12x12":2200,"18x18":3800,"24x24":5500},    
-  resinRect:{"12x18":2600,"12x24":3600,"18x24":4800},    
-  resinAgate:{"12x18":4200,"18x24":6500,"24x30":9000}    
-};    function updatePrice(sel,key){
-document.getElementById(key+"Price").innerText=
-priceTable[key][sel.value];
-}
+  <div class="price">₹ <span id="resinAgatePrice"></span></div>  <a class="order-btn" onclick="orderNow('Resin Name Plate','Agate','resinAgate')">Order</a>
 
-function orderNow(category,variant,key){
-const size=document.querySelector([onchange*="${key}"]).value;
-const bg=document.getElementById("bg-"+key).value;
-const font=document.getElementById("font-"+key).value;
-const price=document.getElementById(key+"Price").innerText;
+</div>  </div>  <button class="floating-share" onclick="navigator.share({title:'SellFix Designing Catalogue',url:location.href})">  
+  <i class="fa-solid fa-share-nodes"></i>  
+</button>  <script>  
+const priceTable={  
+  whiteShadow:{"8x12":1200,"12x12":1500,"12x18":2200,"12x24":3000,"18x18":3600,"18x24":4300,"18x30":5200,"24x24":6100,"24x30":7200,"24x36":8500},  
+  shadowLed:{"8x12":1000,"12x18":1800,"12x24":2600,"18x24":3400,"24x30":4800},  
+  ledLetters:{"12x18":2200,"12x24":3000,"18x24":4200,"24x30":6000},  
+  cutoutLed:{"12x18":2400,"12x24":3200,"18x24":4500,"24x30":6200,"24x36":7800},  
+  acrylicBlack:{"8x12":900,"12x18":1600,"12x24":2400},  
+  acrylicWhite:{"8x12":850,"12x18":1500,"12x24":2300},  
+  acrylicWood:{"12x18":1700,"12x24":2600,"18x24":3500},  
+  resinCircle:{"12x12":2200,"18x18":3800,"24x24":5500},  
+  resinRect:{"12x18":2600,"12x24":3600,"18x24":4800},  
+  resinAgate:{"12x18":4200,"18x24":6500,"24x30":9000}  
+};  
+  
+function updatePrice(sel,key){  
+  document.getElementById(key+"Price").innerText=  
+    priceTable[key][sel.value];  
+}  
+  
+function orderNow(category,variant,key){  
+  const size=document.querySelector(`[onchange*="${key}"]`).value;  
+  const bg=document.getElementById("bg-"+key).value;  
+  const font=document.getElementById("font-"+key).value;  
+  const price=document.getElementById(key+"Price").innerText;  
+  
+  const msg=`Hi SellFix Designing 👋  
+Category: ${category}  
+Variant: ${variant}  
+Size: ${size}  
+Background Colour: ${bg}  
+Font Colour: ${font}  
+Final Price: ₹${price}`;  
+  
+  window.open("https://wa.me/917030191819?text="+encodeURIComponent(msg));  
+}  
+  
+/* LOAD DEFAULT PRICES */  
+document.querySelectorAll(".size-select").forEach(sel=>{  
+  const key=sel.getAttribute("onchange").match(/'(.+?)'/)[1];  
+  document.getElementById(key+"Price").innerText=  
+    priceTable[key][sel.value];  
+});  
+</script>  <!-- IMAGE ZOOM POPUP -->  <div id="imgPopup" style="display:none;">  
+  <span id="closePopup">&times;</span>  
+  <img id="popupImg">  
+</div>  
+<script>  
+function openImage(img){  
+  document.getElementById("popupImg").src = img.src;  
+  document.getElementById("imgPopup").style.display = "flex";  
+}  document.getElementById("closePopup").onclick = function(){
+document.getElementById("imgPopup").style.display = "none";
+};
 
-const msg=Hi SellFix Designing 👋     Category: ${category}     Variant: ${variant}     Size: ${size}     Background Colour: ${bg}     Font Colour: ${font}     Final Price: ₹${price};
-
-window.open("https://wa.me/917030191819?text="+encodeURIComponent(msg));
-}
-
-/* LOAD DEFAULT PRICES */
-document.querySelectorAll(".size-select").forEach(sel=>{
-const key=sel.getAttribute("onchange").match(/'(.+?)'/)[1];
-document.getElementById(key+"Price").innerText=
-priceTable[key][sel.value];
-});
-</script>  <!-- IMAGE ZOOM POPUP -->  <div id="imgPopup" style="display:none;">
-<span id="closePopup">×</span>
-<img id="popupImg">
-
-</div>    
-<script>    
-function openImage(img){    
-  document.getElementById("popupImg").src = img.src;    
-  document.getElementById("imgPopup").style.display = "flex";    
-}  document.getElementById("closePopup").onclick = function(){  
-document.getElementById("imgPopup").style.display = "none";  
-};  document.getElementById("imgPopup").onclick = function(e){
+document.getElementById("imgPopup").onclick = function(e){
 if(e.target.id === "imgPopup"){
 document.getElementById("imgPopup").style.display = "none";
 }
 };
 </script>
 
-<script src="https://www.youtube.com/iframe_api"></script>  <script>    let players = [];
-
-function onYouTubeIframeAPIReady() {
-const slides = document.querySelectorAll('.shorts-slide');
-
-slides.forEach((slide, index) => {
-const videoId = slide.dataset.videoId;
-
-const iframe = document.createElement('iframe');    
-iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&playsinline=1&controls=0&rel=0`;    
-iframe.allow = "autoplay; encrypted-media";    
-iframe.style.display = "none";    
-iframe.style.width = "100%";    
-iframe.style.height = "100%";    
-iframe.frameBorder = "0";    
-
-slide.appendChild(iframe);    
-
-const player = new YT.Player(iframe, {    
-  events: {    
-    onReady: () => {    
-      players[index] = player;    
-
-      slide.addEventListener('click', () => {    
-        players.forEach((p, i) => {    
-          p.pauseVideo();    
-          slides[i].querySelector('iframe').style.display = "none";    
-          slides[i].querySelector('.shorts-thumbnail').style.display = "flex";    
-        });    
-
-        iframe.style.display = "block";    
-        slide.querySelector('.shorts-thumbnail').style.display = "none";    
-        player.playVideo();    
-      });    
-    }    
-  }    
-});
-
-});
-}
-
-// autoplay most visible on scroll
-document.querySelector('.shorts-carousel-horizontal')
-.addEventListener('scroll', () => {
-const slides = document.querySelectorAll('.shorts-slide');
-let maxVisible = 0;
-let activeIndex = -1;
-
-slides.forEach((slide, index) => {    
-  const rect = slide.getBoundingClientRect();    
-  const visible = Math.min(rect.right, window.innerWidth) -    
-                  Math.max(rect.left, 0);    
-
-  if (visible > maxVisible) {    
-    maxVisible = visible;    
-    activeIndex = index;    
-  }    
-});    
-
-if (activeIndex >= 0) {    
-  players.forEach((p, i) => {    
-    const iframe = slides[i].querySelector('iframe');    
-    const thumb = slides[i].querySelector('.shorts-thumbnail');    
-
-    if (i === activeIndex) {    
-      iframe.style.display = "block";    
-      thumb.style.display = "none";    
-      p.playVideo();    
-    } else {    
-      p.pauseVideo();    
-      iframe.style.display = "none";    
-      thumb.style.display = "flex";    
-    }    
-  });    
-}
-
-}, { passive:true });
-</script>  </body>
-
-</html> 
+<script src="https://www.youtube.com/iframe_api"></script>  <script>  
+let players = [];  
+  
+function onYouTubeIframeAPIReady() {  
+  const slides = document.querySelectorAll('.shorts-slide');  
+  
+  slides.forEach((slide, index) => {  
+    const videoId = slide.dataset.videoId;  
+  
+    const iframe = document.createElement('iframe');  
+    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&playsinline=1&controls=0&rel=0`;  
+    iframe.allow = "autoplay; encrypted-media";  
+    iframe.style.display = "none";  
+    iframe.style.width = "100%";  
+    iframe.style.height = "100%";  
+    iframe.frameBorder = "0";  
+  
+    slide.appendChild(iframe);  
+  
+    const player = new YT.Player(iframe, {  
+      events: {  
+        onReady: () => {  
+          players[index] = player;  
+  
+          slide.addEventListener('click', () => {  
+            players.forEach((p, i) => {  
+              p.pauseVideo();  
+              slides[i].querySelector('iframe').style.display = "none";  
+              slides[i].querySelector('.shorts-thumbnail').style.display = "flex";  
+            });  
+  
+            iframe.style.display = "block";  
+            slide.querySelector('.shorts-thumbnail').style.display = "none";  
+            player.playVideo();  
+          });  
+        }  
+      }  
+    });  
+  });  
+}  
+  
+// autoplay most visible on scroll  
+document.querySelector('.shorts-carousel-horizontal')  
+  .addEventListener('scroll', () => {  
+    const slides = document.querySelectorAll('.shorts-slide');  
+    let maxVisible = 0;  
+    let activeIndex = -1;  
+  
+    slides.forEach((slide, index) => {  
+      const rect = slide.getBoundingClientRect();  
+      const visible = Math.min(rect.right, window.innerWidth) -  
+                      Math.max(rect.left, 0);  
+  
+      if (visible > maxVisible) {  
+        maxVisible = visible;  
+        activeIndex = index;  
+      }  
+    });  
+  
+    if (activeIndex >= 0) {  
+      players.forEach((p, i) => {  
+        const iframe = slides[i].querySelector('iframe');  
+        const thumb = slides[i].querySelector('.shorts-thumbnail');  
+  
+        if (i === activeIndex) {  
+          iframe.style.display = "block";  
+          thumb.style.display = "none";  
+          p.playVideo();  
+        } else {  
+          p.pauseVideo();  
+          iframe.style.display = "none";  
+          thumb.style.display = "flex";  
+        }  
+      });  
+    }  
+  }, { passive:true });  
+</script>  </body>  
+</html>  
