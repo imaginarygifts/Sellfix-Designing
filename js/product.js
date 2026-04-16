@@ -3,7 +3,7 @@ import { doc, getDoc, setDoc, getDocs, collection, updateDoc, addDoc } from "htt
 import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 // ===== CONFIG =====
-const WHATSAPP_NUMBER = "917385235738";
+const WHATSAPP_NUMBER = "917030191819";
 
 // ===== GLOBALS =====
 const id = new URLSearchParams(window.location.search).get("id");
