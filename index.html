@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Imaginary Gifts - Customized Gifts Catalogue</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <!-- SEO -->
+  <meta name="description" content="Buy customized gifts online - frames, mugs, wallets & more">
+
+  <!-- WhatsApp / Facebook Preview -->
+  <meta property="og:title" content="Imaginary Gifts - Customized Gifts">
+  <meta property="og:description" content="Create beautiful personalized gifts for every occasion">
+  <meta property="og:image" content="https://imaginarygifts.shopcom.in/images/preview.jpg?v=2">
+  <meta property="og:url" content="https://imaginarygifts.shopcom.in">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<header class="topbar">
+
+  <!-- MENU -->
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+
+  <!-- LOGO (IMAGE) -->
+  <div class="logo">
+    <img src="https://firebasestorage.googleapis.com/v0/b/imaginary-gifts.firebasestorage.app/o/product-images%2FIG%2F1000273765.webp?alt=media&token=e093bc6c-c32b-407b-b75c-cfc5eef152ef" alt="Imaginary Gifts">
+  </div>
+
+  <!-- SEARCH ICON -->
+  <div class="search-icon" onclick="openSearch()">🔍</div>
+
+</header>
+
+
+<!-- ================= SEARCH OVERLAY ================= -->
+<div id="searchOverlay" class="search-overlay">
+  <input type="text" id="searchInput" placeholder="Search for products...">
+</div>
+
+
+<!-- ================= SIDEBAR ================= -->
+<div id="sidebar" class="sidebar">
+
+  
+
+  <!-- MENU -->
+  <a href="https://imaginarygifts.shopcom.in/">🏠 Home</a>
+  <a href="aboutus">ℹ️ About Us</a>
+  <a href="contact-us">📞 Contact Us</a>
+  <a href="t&c">📜 Terms & Conditions</a>
+  <a href="privacy-policy">🔒 Privacy Policy</a>
+  <a href="refund">💸 Refund Policy</a>
+  <a href="shipping">🚚 Shipping Policy</a>
+
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+
+<!-- ================= CATEGORY ================= -->
+<div id="categoryBar" class="category-scroll"></div>
+<div id="subCategoryBar" class="subcategory-row"></div>
+
+<!-- TAG FILTER -->
+<div class="tag-filter-row" id="tagFilterRow"></div>
+
+
+<!-- ================= PRODUCTS ================= -->
+<main>
+  <div id="productGrid" class="product-grid"></div>
+</main>
+
+
+<!-- SHARE BUTTON -->
+<div id="shareBtn" onclick="sharePage()">🔗</div>
+
+
+<!-- ================= JS ================= -->
+<script type="module" src="js/store.js"></script>
+<script src="js/share.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+for buy now
+replace this css of button
+.bottom-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  z-index: 9999;
+}
+
+.bottom-actions button {
+  width: 50%;
+  height: 56px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.buy-btn {
+  background: linear-gradient(135deg, #ff9a00, #ff0058);
+  color: white;
+}
+
+.order-btn {
+  background: linear-gradient(135deg, #00ff9c, #00c3ff);
+  color: black;
+}
+
+and this html
+
+<div class="bottom-actions">
+  <button class="buy-btn" onclick="buyNow()">Buy Now</button>
+  <button class="order-btn" onclick="orderNow()">Order On WhatsApp</button>
+</div>

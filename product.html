@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Imaginary Gifts - Customized Gifts</title>
+
+  <meta name="description" content="Customized gifts from Imaginary Gifts">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:type" content="product">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/store.css">
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<header class="topbar">
+
+  <!-- MENU -->
+  <div class="menu-btn" onclick="toggleSidebar()">☰</div>
+
+  <!-- LOGO (IMAGE) -->
+  <div class="logo">
+   <a href="index">
+<img src="https://firebasestorage.googleapis.com/v0/b/imaginary-gifts.firebasestorage.app/o/product-images%2FIG%2F1000273765.webp?alt=media&token=e093bc6c-c32b-407b-b75c-cfc5eef152ef" alt="Imaginary Gifts"> 
+</a>
+  </div>
+
+ 
+
+</header>
+
+
+<!-- ================= SEARCH OVERLAY ================= -->
+<div id="searchOverlay" class="search-overlay">
+  <input type="text" id="searchInput" placeholder="Search for products...">
+</div>
+
+
+<!-- ================= SIDEBAR ================= -->
+<div id="sidebar" class="sidebar">
+
+  <!-- SEARCH INSIDE SIDEBAR -->
+  
+
+  <!-- MENU -->
+  <a href="https://imaginarygifts.shopcom.in/">🏠 Home</a>
+  
+  <a href="aboutus">ℹ️ About Us</a>
+  <a href="contact-us">📞 Contact Us</a>
+  <a href="t&c">📜 Terms & Conditions</a>
+  <a href="privacy-policy">🔒 Privacy Policy</a>
+  <a href="refund">💸 Refund Policy</a>
+  <a href="shipping">🚚 Shipping Policy</a>
+
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <div class="top-bar custom-topbar">
+  <span class="back-btn" onclick="goBack()">←</span>
+</div>
+
+<div class="product-page">
+
+  <div id="slider" class="slider"></div>
+  <div id="sliderDots" class="slider-dots"></div>
+
+  <div id="productDetails" class="product-details"></div>
+
+</div>
+
+<!-- WhatsApp Order Form -->
+<div id="waFormOverlay" class="hidden">
+  <div class="wa-form">
+    <h3>Enter delivery details</h3>
+
+    <input id="custName" placeholder="Full Name">
+    <input id="custPhone" placeholder="Mobile Number">
+    <textarea id="custAddress" placeholder="Full Address"></textarea>
+    <input id="custPincode" placeholder="Pincode">
+
+    <div class="wa-actions">
+      <button onclick="closeWaForm()">Cancel</button>
+      <button onclick="submitWaOrder()">Continue to WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="sticky-order">
+
+ <button class="order-btn" onclick="orderNow()">
+    Order on WhatsApp
+  </button>
+
+  <button class="share-btn" onclick="sharePage()">
+    Share 🔗
+  </button>
+
+</div>
+
+</div>
+</div>
+
+<script type="module" src="js/product.js"></script>
+<script src="js/share.js"></script>
+<script>
+  function goBack() {
+    location.href = "index";
+  }
+</script> 
+</body>
+</html>
