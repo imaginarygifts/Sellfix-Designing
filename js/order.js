@@ -59,7 +59,7 @@ async function generateOrderNumber() {
     await setDoc(ref, { current: next });
   }
 
-  return `IG-${next}`;
+  return `SD-${next}`;
 }
 
 /* ======================================================
