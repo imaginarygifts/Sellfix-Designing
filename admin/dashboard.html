@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-email" id="adminEmail">Loading...</div>
+  </div>
+
+  <div class="sidebar-menu">
+
+    <a href="orders.html">Orders</a>
+    <a href="products.html">Products</a>
+    <a href="add-product.html">Add Product</a>
+<a href="gallery.html">Image Gallery</a>
+    <a href="categories.html">Categories</a>
+    <a href="tags.html">Tags</a>
+    <a href="coupons.html">Coupons</a>
+    <a href="excel.html">Excel</a>
+    <a href="cleanup.html">Cleanup</a>
+
+  </div>
+
+  <div class="sidebar-footer">
+    <a href="settings.html">Settings</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </div>
+
+</div>
+
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="toggleSidebar()"></div>
+
+
+<!-- TOPBAR -->
+<div class="topbar">
+
+  <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+  <span class="title">IG Dashboard</span>
+
+  <div class="top-actions">
+    <button class="settings-btn" onclick="goSettings()">⚙</button>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+</div>
+
+
+<!-- STATS (UNCHANGED) -->
+<div id="stats"></div>
+
+
+
+
+
+<!-- 🔐 Guard -->
+<script type="module" src="../js/guard.js"></script>
+
+<!-- Dashboard logic -->
+<script type="module" src="../js/dashboard.js"></script>
+
+
+<script type="module">
+
+import { auth } from "../js/firebase.js";
+import { signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+
+window.logout = async () => {
+  await signOut(auth);
+  location.href = "login.html";
+};
+
+
+window.goSettings = () => {
+  location.href = "settings.html";
+};
+
+
+/* SIDEBAR */
+
+window.toggleSidebar = () => {
+
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("overlay");
+
+  sidebar.classList.toggle("open");
+  overlay.classList.toggle("show");
+
+};
+
+
+/* SHOW ADMIN EMAIL */
+
+auth.onAuthStateChanged(user => {
+  if(user){
+    document.getElementById("adminEmail").innerText = user.email;
+  }
+});
+
+</script>
+
+</body>
+</html>

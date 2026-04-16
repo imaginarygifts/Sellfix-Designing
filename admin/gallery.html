@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Image Gallery</title>
+
+<link rel="stylesheet" href="../css/gallery.css">
+
+</head>
+
+<body>
+
+<div class="header">
+
+<button class="backBtn" onclick="history.back()">←</button>
+
+<h2>Image Gallery</h2>
+
+</div>
+
+
+<div class="topBar">
+
+<label class="selectAll">
+
+<input type="checkbox" id="selectAll">
+Select All
+
+</label>
+
+<button id="deleteBtn" onclick="deleteSelected()" style="display:none">
+🗑 Delete
+</button>
+
+</div>
+
+
+<div id="breadcrumbs" class="breadcrumbs"></div>
+
+<div id="galleryGrid" class="galleryGrid"></div>
+
+
+<div class="actions">
+
+<button onclick="createFolder()" class="btn">
++ Add Folder
+</button>
+
+
+<!-- IMAGE UPLOAD -->
+
+<input type="file" id="imageInput" multiple accept="image/*" hidden>
+
+<button onclick="document.getElementById('imageInput').click()" class="btn">
++ Add Images
+</button>
+
+
+<!-- ZIP UPLOAD -->
+
+<input type="file" id="zipInput" accept=".zip" hidden>
+
+<button onclick="document.getElementById('zipInput').click()" class="btn">
++ Upload ZIP
+</button>
+
+</div>
+
+
+<div id="viewer" class="viewer">
+
+<img id="viewerImg">
+
+
+<button onclick="closeViewer()" class="closeViewer">←</button>
+
+</div>
+
+
+
+<!-- PROCESS POPUP -->
+
+<div id="processPopup" class="processPopup hidden">
+
+<div class="processBox">
+
+<h3 id="processTitle">Processing...</h3>
+
+<div class="progressBar">
+<div id="progressFill"></div>
+</div>
+
+<div id="progressText">0%</div>
+
+</div>
+
+</div>
+
+
+<!-- ZIP LIBRARY -->
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
+<script type="module" src="../js/gallery.js"></script>
+
+</body>
+</html>

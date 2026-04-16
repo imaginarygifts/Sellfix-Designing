@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bulk Products</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="back-btn" onclick="goBack()">←</span>
+  <span class="title">Bulk Products</span>
+</div>
+
+<div class="container">
+
+<h3>Bulk Product Tools</h3>
+
+<div class="bulk-card">
+
+<button class="btn-outline" onclick="downloadTemplate()">
+📥 Download Excel Template
+</button>
+
+<button class="btn-outline" onclick="exportProducts()">
+📤 Export Existing Products
+</button>
+
+<label class="btn-outline upload-btn">
+📤 Upload Excel File
+<input type="file" id="excelUpload" accept=".xlsx" hidden>
+</label>
+
+</div>
+
+<p class="hint">
+Upload products using Excel template.  
+Make sure format matches the downloaded template.
+</p>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<script type="module" src="../js/guard.js"></script>
+<script type="module" src="../js/excel.js"></script>
+
+<script>
+function goBack(){
+location.href="dashboard.html"
+}
+</script>
+
+</body>
+</html>

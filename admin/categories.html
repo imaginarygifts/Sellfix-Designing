@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Categories</title>
+  <link rel="stylesheet" href="../css/categories.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <span class="back-btn" onclick="goBack()">←</span>
+    <span class="title">Categories</span>
+  </div>
+
+  <div class="page-wrap">
+
+  <!-- ADD CATEGORY -->
+  <div class="add-category-wrap">
+    <select id="parentCategory">
+      <option value="">Main Category</option>
+    </select>
+
+    <input id="catName" placeholder="Enter category name">
+
+    <button onclick="addCategory()">Add Category</button>
+  </div>
+
+  <!-- CATEGORY TREE -->
+  <ul id="catList"></ul>
+
+</div>
+
+
+  <!-- Scripts -->
+  <script type="module" src="../js/guard.js"></script>
+  <script type="module" src="../js/categories.js"></script>
+
+  <script>
+    function goBack() {
+      location.href = "add-product.html";
+    }
+  </script>
+
+</body>
+</html>

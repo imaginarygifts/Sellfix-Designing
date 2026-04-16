@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Storage Cleanup</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+
+<div class="topbar">
+  <span class="back-btn" onclick="goBack()">←</span>
+  <span class="title">Storage Cleanup</span>
+</div>
+
+<div class="container">
+
+<section id="cleanupPanel" class="cleanup-panel">
+
+<h3>🧹 Storage Cleanup (Custom Images)</h3>
+
+<div class="cleanup-actions">
+
+<button class="btn-outline" onclick="deleteOlderThan7Days()">
+Delete > 7 Days
+</button>
+
+<button class="btn-danger" onclick="deleteSelectedImages()">
+Delete Selected
+</button>
+
+<button class="btn-outline" onclick="toggleSelectAll()" id="selectAllBtn">
+Select All
+</button>
+
+</div>
+
+<div id="cleanupList" class="cleanup-grid"></div>
+
+</section>
+
+</div>
+
+<script type="module" src="../js/guard.js"></script>
+<script type="module" src="../js/dashboard.js"></script>
+
+<script>
+function goBack(){
+location.href="dashboard.html"
+}
+</script>
+
+</body>
+</html>
