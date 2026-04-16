@@ -469,7 +469,7 @@ window.submitWaOrder = async function () {
       await setDoc(counterRef, { current: nextNumber });
     }
 
-    const orderNumber = `IG-${nextNumber}`;
+    const orderNumber = `SD-${nextNumber}`;
 
     // ================= SAVE ORDER =================
     const orderData = {
@@ -518,7 +518,7 @@ window.submitWaOrder = async function () {
     await addDoc(collection(db, "orders"), orderData);
 
     // ================= WHATSAPP MESSAGE =================
-    let msg = `🛍 *New Order — Imaginary Gifts*\n\n`;
+    let msg = `🛍 *New Order — Sellfix Designing*\n\n`;
     msg += `🧾 *Order No:* ${orderNumber}\n\n`;
 
     msg += `👤 *Name:* ${name}\n`;
