@@ -313,7 +313,7 @@ window.placeOrder = async function () {
    WHATSAPP
 ====================================================== */
 function sendWhatsApp(order) {
-  let msg = `🛍 *New Order — Imaginary Gifts*\n\n`;
+  let msg = `🛍 *New Order — Sellfix Designing*\n\n`;
   msg += `🧾 Order No: *${order.orderNumber}*\n\n`;
 
   msg += `Name: ${order.customer.name}\n`;
@@ -336,7 +336,7 @@ function sendWhatsApp(order) {
   msg += `\nTotal: ₹${order.pricing.finalAmount}\n`;
   msg += `Payment: ${order.payment.mode}\n`;
 
-  const url = `https://wa.me/917385235738?text=${encodeURIComponent(msg)}`;
+  const url = `https://wa.me/917030191819?text=${encodeURIComponent(msg)}`;
   window.open(url, "_blank");
 }
 
@@ -348,7 +348,7 @@ function startPayment(customer) {
     key: "rzp_test_8OmRCO9SiPeXWg",
     amount: finalAmount * 100,
     currency: "INR",
-    name: "Imaginary Gifts",
+    name: "Sellfix Designing",
     description: "Order Payment",
 
     handler: async function (response) {
