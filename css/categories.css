@@ -1,0 +1,191 @@
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* ================= PAGE ================= */
+body {
+  background: radial-gradient(circle at top, #15193a, #070b1f);
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* ================= TOP BAR ================= */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, #0d1130, #080b22);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.back-btn {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+}
+
+/* ================= PAGE WRAP ================= */
+.page-wrap {
+  padding: 16px;
+}
+
+/* ================= ADD CATEGORY ================= */
+.add-category-wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.add-category-wrap select,
+.add-category-wrap input {
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  padding: 0 14px;
+  font-size: 14px;
+  outline: none;
+}
+
+.add-category-wrap select {
+  background: #ffffff;
+  color: #000;
+}
+
+.add-category-wrap input {
+  background: #1b1f3d;
+  color: #fff;
+}
+
+.add-category-wrap input::placeholder {
+  color: #9aa0c7;
+}
+
+.add-category-wrap button {
+  background: linear-gradient(135deg, #ff8a00, #ffb347);
+  border: none;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #000;
+}
+
+/* ================= CATEGORY LIST ================= */
+#catList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ================= MAIN CATEGORY ================= */
+.main-cat {
+  background: linear-gradient(145deg, #1a1f44, #12163a);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.main-cat > .row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main-cat .drag {
+  cursor: grab;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.main-cat strong {
+  flex: 1;
+  font-size: 16px;
+}
+
+/* DELETE BUTTON */
+.main-cat button {
+  background: #ff4d4d;
+  border: none;
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* ================= SUB CATEGORY LIST ================= */
+.sub-list {
+  list-style: none;
+  margin-top: 10px;
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ================= SUB CATEGORY ITEM ================= */
+.sub-cat {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.sub-cat span {
+  flex: 1;
+  opacity: 0.95;
+}
+
+.sub-cat button {
+  background: #ff4d4d;
+  border: none;
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ================= DRAG FEEDBACK ================= */
+.main-cat.dragging {
+  opacity: 0.6;
+}
+
+.main-cat.drag-over {
+  outline: 2px dashed #ffb347;
+}
+
+/* ================= EMPTY STATES ================= */
+.empty {
+  text-align: center;
+  opacity: 0.6;
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* ================= MOBILE OPTIMIZATION ================= */
+@media (max-width: 480px) {
+  .add-category-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .add-category-wrap button {
+    height: 44px;
+  }
+}
