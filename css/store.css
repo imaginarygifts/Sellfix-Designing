@@ -718,6 +718,8 @@ color:#fff;
   font-size:30px;        /* 🔥 bigger */
   line-height:1;
 }
+.sale #price{
+  font-size:30px;
 
 .old{
   text-decoration:line-through;
