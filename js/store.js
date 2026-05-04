@@ -151,6 +151,7 @@ function createMainBtn(label, id) {
   div.onclick = () => {
     activeCategory = id;
     activeSubCategory = "all";
+visibleCount = 25; //
 
     document
       .querySelectorAll(".category-pill")
@@ -199,6 +200,7 @@ function createSubBtn(label, id) {
 
   div.onclick = () => {
     activeSubCategory = id;
+visibleCount = 25; //
 
     document
       .querySelectorAll(".subcategory-pill")
@@ -227,6 +229,7 @@ function renderTags(tags) {
 
   allChip.onclick = () => {
     activeTag = "all";
+visibleCount = 25; //
     updateTagUI();
     renderProducts();
     updateURL();
@@ -395,6 +398,7 @@ function renderLoadMore(total) {
   if (searchInput) {
     searchInput.addEventListener("input", function () {
       searchQuery = this.value.toLowerCase().trim();
+visibleCount = 25; //
       renderProducts();
       updateURL();
     });
