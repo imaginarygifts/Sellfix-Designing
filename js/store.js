@@ -14,7 +14,8 @@ const subCategoryBar = document.getElementById("subCategoryBar");
 const tagRow = document.getElementById("tagFilterRow");
 
 /* ================= STATE ================= */
-
+let visibleCount = 25;
+const LOAD_STEP = 25;
 let allProducts = [];
 let allCategories = [];
 let mainCategories = [];
@@ -297,7 +298,9 @@ function renderProducts() {
     return;
   }
 
-  filtered.forEach(p => {
+  const visibleProducts = filtered.slice(0, visibleCount);
+
+  visibleProducts.forEach(p => {
 
     const card = document.createElement("div");
     card.className = "product-card";
@@ -346,6 +349,29 @@ function renderProducts() {
 
     grid.appendChild(card);
   });
+
+  renderLoadMore(filtered.length);
+}
+
+/* ================= LOAD MORE ================= */
+
+function renderLoadMore(total) {
+  const oldBtn = document.getElementById("loadMoreBtn");
+  if (oldBtn) oldBtn.remove();
+
+  if (visibleCount >= total) return;
+
+  const btn = document.createElement("button");
+  btn.id = "loadMoreBtn";
+  btn.innerText = "Load More";
+  btn.className = "load-more-btn";
+
+  btn.onclick = () => {
+    visibleCount += LOAD_STEP;
+    renderProducts();
+  };
+
+  grid.after(btn);
 }
 
 /* ================= INIT ================= */
