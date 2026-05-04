@@ -125,6 +125,11 @@ body {
 
 
 
+.product-details p {
+  white-space: pre-line;
+}
+
+
 
 
 .close-btn {
