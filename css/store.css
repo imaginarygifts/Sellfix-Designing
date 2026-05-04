@@ -795,3 +795,19 @@ border-radius:20px;
 display:inline-block;
 z-index:3;
 }
+
+
+
+
+
+
+.load-more-btn {
+  margin: 20px auto;
+  display: block;
+  padding: 12px 20px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
