@@ -677,30 +677,39 @@ position:relative;
 
 /* general badge */
 
+/* ===== COMMON BADGE ===== */
 .badge{
-position:absolute;
-padding:4px 8px;
-border-radius:8px;
-font-size:11px;
-font-weight:600;
-color:#000;
+  position:absolute;
+  display:inline-flex;        /* 🔥 IMPORTANT FIX */
+  align-items:center;
+  justify-content:center;
+  padding:4px 8px;
+  border-radius:8px;
+  font-size:11px;
+  font-weight:600;
+  white-space:nowrap;         /* 🔥 prevent stretch */
 }
 
-/* bestseller */
-
+/* ===== BESTSELLER ===== */
 .badge.bestseller{
-top:8px;
-right:8px;
-background:linear-gradient(135deg,#ffd700,#ffb700);
+  top:8px;
+  right:8px;
+  background:linear-gradient(135deg,#ffd700,#ffb700);
+  color:#000;
 }
 
-/* discount */
-
+/* ===== DISCOUNT (CIRCLE STYLE) ===== */
 .badge.discount{
-top:8px;
-left:8px;
-background:#ff4d4d;
-color:#fff;
+  top:8px;
+  left:8px;
+  background:#00e676;        /* green */
+  color:#000;
+  border-radius:50%;         /* 🔥 circle */
+  width:40px;
+  height:40px;
+  font-size:12px;
+  font-weight:700;
+  padding:0;                 /* remove padding */
 }
 
 
