@@ -725,6 +725,8 @@ position:relative;
 .sale{
   font-weight:800;
   font-size:30px;        /* 🔥 bigger */
+  color:#ffc107;
+  text-shadow: 0 0 6px rgba(255,193,7,0.4);
  
 }
 .sale #price{
