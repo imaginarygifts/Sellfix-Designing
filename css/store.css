@@ -707,20 +707,23 @@ color:#fff;
 /* price style */
 
 .price-wrap{
-display:flex;
-gap:6px;
-align-items:center;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  margin: 8px 0;
 }
 
 .sale{
-font-weight:800;
-font-size:28px;
+  font-weight:800;
+  font-size:30px;        /* 🔥 bigger */
+  line-height:1;
 }
 
 .old{
-text-decoration:line-through;
-opacity:0.6;
-font-size:13px;
+  text-decoration:line-through;
+  opacity:0.5;
+  font-size:14px;
+  color:#999;
 }
 
 
@@ -876,8 +879,3 @@ z-index:3;
 }
 
 
-.sale {
-  font-size: 28px;
-  font-weight: 800;
-  color: #00c853; /* green highlight */
-}
