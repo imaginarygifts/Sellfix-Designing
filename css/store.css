@@ -837,6 +837,10 @@ z-index:3;
 
 /* ---------- POPUP ALERT ---------- */
 
+.hidden{
+  display:none !important;
+}
+
 .error-modal {
   position: fixed;
   top: 0;
