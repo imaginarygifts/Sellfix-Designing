@@ -841,6 +841,10 @@ z-index:3;
   display:none !important;
 }
 
+.error-modal.hidden {
+  display: none !important;
+}
+
 .error-modal {
   position: fixed;
   top: 0;
@@ -854,9 +858,7 @@ z-index:3;
   z-index: 9999;
 }
 
-.error-modal.hidden {
-  display: none;
-}
+
 
 .error-box {
   background: #fff;
