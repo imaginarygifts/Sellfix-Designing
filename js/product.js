@@ -607,9 +607,9 @@ function showErrorModal(errors) {
     list.appendChild(li);
   });
 
-  modal.classList.remove("hidden");
+  modal.style.display = "flex";
 }
 
 window.closeErrorModal = function () {
-  document.getElementById("errorModal").classList.add("hidden");
+  document.getElementById("errorModal").style.display = "none";
 };
