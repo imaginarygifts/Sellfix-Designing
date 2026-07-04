@@ -211,8 +211,9 @@ let html = `
   ${priceHTML}
 </div>
 `;
+  
+  
 
- 
   // COLORS
   if (product.variants?.colors?.length) {
     html += `<h4>Colors</h4><div class="variant-row">`;
@@ -231,48 +232,14 @@ let html = `
     html += `</div>`;
   }
 
-  // CUSTOM OPTIONS
-  if (product.customOptions?.length) {
-    html += `<h4>Custom Options</h4>`;
-    product.customOptions.forEach((o, i) => {
-
-      if (o.type === "text") {
-        html += `<input class="custom-input" placeholder="${o.label}" oninput="addTextOption(${i}, this.value)">`;
-      }
-
-      if (o.type === "checkbox") {
-        html += `
-          <div class="option-row">
-            <input type="checkbox" onchange="toggleCheckbox(${i}, this.checked)">
-            <span>${o.label} (+₹${o.price})</span>
-          </div>
-        `;
-      }
-
-      if (o.type === "dropdown") {
-        html += `
-          <select class="custom-select" onchange="addDropdownOption(${i}, this.value)">
-            <option value="">Select ${o.label}</option>
-            ${o.choices.map(c => `<option value="${c}">${c}</option>`).join("")}
-          </select>
-        `;
-      }
-
-      if (o.type === "image") {
-        html += `
-          <div class="upload-box">
-            <label>${o.label}</label>
-            <input type="file" accept="image/*" onchange="uploadCustomImage(${i}, this.files[0])">
-            <small id="uploadStatus${i}"></small>
-          </div>
-        `;
-      }
-
-    });
-  }
 
 
- // RELATED DESIGN
+// Custom options will now open inside popup
+
+
+
+
+// ===== RELATED DESIGNS =====
 
 if (relatedProducts.length > 1) {
   html += `
@@ -296,6 +263,7 @@ if (relatedProducts.length > 1) {
 
   html += `</div></div>`;
 }
+
   details.innerHTML = html;
 }
 
@@ -375,34 +343,60 @@ window.addDropdownOption = function(i, val) {
 
 // ===== IMAGE UPLOAD OPTION =====
 window.uploadCustomImage = async function(i, file) {
+
   if (!file) return;
 
   const status = document.getElementById(`uploadStatus${i}`);
-  status.innerText = "Uploading...";
+
+  // Show uploading message
+  status.innerHTML = `
+    <div class="uploading">
+      ⏳ Uploading <b>${file.name}</b>...
+    </div>
+  `;
 
   try {
+
     const storageRef = ref(storage, `custom-images/${Date.now()}-${file.name}`);
+
     await uploadBytes(storageRef, file);
+
     const url = await getDownloadURL(storageRef);
 
     selected.options[i] = product.customOptions[i].price;
-    selected.optionValues[i] = "Image uploaded";
+    selected.optionValues[i] = file.name;
     selected.imageLinks[i] = url;
 
-    status.innerText = "Uploaded ✔";
+    // Success message
+    status.innerHTML = `
+      <div class="upload-success">
+        ✅ Uploaded Successfully
+        <br>
+        <small>${file.name}</small>
+      </div>
+    `;
 
     recalcPrice();
+
   } catch (err) {
+
     console.error(err);
-    status.innerText = "Upload failed ❌";
-    alert("Image upload failed: " + err.message);
+
+    status.innerHTML = `
+      <div class="upload-error">
+        ❌ Upload Failed
+      </div>
+    `;
+
+    alert(err.message);
   }
+
 };
+
 
 // ===== PRICE =====
 function recalcPrice() {
 
-  // ✅ choose correct starting price
   const base =
     product.salePrice && product.salePrice < product.basePrice
       ? product.salePrice
@@ -410,29 +404,269 @@ function recalcPrice() {
 
   finalPrice = base;
 
-  // variants
-  if (selected.color) finalPrice += selected.color.price;
-  if (selected.size) finalPrice += selected.size.price;
+  // Color price
+  if (selected.color) {
+    finalPrice += Number(selected.color.price || 0);
+  }
 
-  // custom options
-  Object.values(selected.options).forEach(p => finalPrice += p);
+  // Size price
+  if (selected.size) {
+    finalPrice += Number(selected.size.price || 0);
+  }
 
-  document.getElementById("price").innerText = finalPrice;
+  // Custom options price
+  Object.values(selected.options).forEach(price => {
+    finalPrice += Number(price || 0);
+  });
+
+  // Update product page price
+  const pagePrice = document.getElementById("price");
+  if (pagePrice) {
+    pagePrice.innerText = finalPrice;
+  }
+
+  // Update popup price
+  const popupPrice = document.getElementById("popupPrice");
+  if (popupPrice) {
+    popupPrice.innerText = "₹" + finalPrice;
+  }
 }
+
+
+
+
+
+
+window.nextToAddress = function () {
+
+  const errors = validateRequiredSelections();
+
+  if (errors.length) {
+
+    showErrorModal(errors);
+
+    return;
+
+  }
+
+  closeCustomizePopup();
+
+  document
+    .getElementById("waFormOverlay")
+    .classList.remove("hidden");
+
+};
+
+window.backToCustomize = function(){
+
+  document
+    .getElementById("waFormOverlay")
+    .classList.add("hidden");
+
+  document
+    .getElementById("customizeOverlay")
+    .classList.remove("hidden");
+
+};
+
+
+
+
+/* ================= CUSTOMIZE POPUP ================= */
+
+function renderCustomizePopup() {
+
+  const container = document.getElementById("customOptionsContainer");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  // Update popup price
+  const popupPrice = document.getElementById("popupPrice");
+  if (popupPrice) popupPrice.innerText = "₹" + finalPrice;
+
+  if (!product.customOptions?.length) return;
+
+  product.customOptions.forEach((o, i) => {
+
+    const wrap = document.createElement("div");
+
+    wrap.style.marginBottom = "16px";
+
+    // ---------- LABEL ----------
+
+    const label = document.createElement("label");
+
+    label.innerHTML =
+      o.label +
+      (o.required
+        ? ' <span style="color:red">*</span>'
+        : "");
+
+    wrap.appendChild(label);
+
+    // ---------- TEXT ----------
+
+    if (o.type === "text") {
+
+      wrap.innerHTML += `
+        <input
+          class="custom-input"
+          placeholder="${o.label}"
+          value="${selected.optionValues[i] || ""}"
+          oninput="addTextOption(${i},this.value);
+                   document.getElementById('popupPrice').innerText='₹'+finalPrice;">
+      `;
+
+    }
+
+    // ---------- CHECKBOX ----------
+
+    else if (o.type === "checkbox") {
+
+      wrap.innerHTML += `
+        <div class="option-row">
+
+          <input
+  type="checkbox"
+  ${selected.optionValues[i] ? "checked" : ""}
+  onchange="toggleCheckbox(${i},this.checked)">
+
+          <span>
+            ${o.label}
+            (+₹${o.price})
+          </span>
+
+        </div>
+      `;
+
+    }
+
+    // ---------- DROPDOWN ----------
+
+    else if (o.type === "dropdown") {
+
+      let options =
+        `<option value="">Select ${o.label}</option>`;
+
+      o.choices.forEach(choice => {
+
+        options += `
+          <option
+
+            value="${choice}"
+
+            ${
+              selected.optionValues[i] === choice
+                ? "selected"
+                : ""
+            }
+
+          >
+            ${choice}
+          </option>
+        `;
+
+      });
+
+      wrap.innerHTML += `
+        <select
+
+          class="custom-select"
+
+          onchange="
+            addDropdownOption(${i},this.value);
+            document.getElementById('popupPrice').innerText='₹'+finalPrice;
+          "
+
+        >
+
+          ${options}
+
+        </select>
+      `;
+
+    }
+    // ---------- IMAGE ----------
+
+    else if (o.type === "image") {
+
+      wrap.innerHTML += `
+        <div class="upload-box">
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="uploadCustomImage(${i}, this.files[0])">
+
+          <small id="uploadStatus${i}">
+            ${
+              selected.imageLinks[i]
+                ? `✅ ${selected.optionValues[i]}`
+                : ""
+            }
+          </small>
+
+        </div>
+      `;
+
+    }
+
+    container.appendChild(wrap);
+
+  });
+
+}
+
+
+
+
+
+window.openCustomizePopup = function () {
+
+  renderCustomizePopup();
+
+  document.getElementById("customizeOverlay")
+    .classList.remove("hidden");
+
+};
+
+window.closeCustomizePopup = function () {
+
+  document.getElementById("customizeOverlay")
+    .classList.add("hidden");
+
+};
+
+
+window.continueAfterCustomize = function () {
+
+  const errors = validateRequiredSelections();
+
+  if (errors.length) {
+    alert(errors.join("\n"));
+    return;
+  }
+
+  closeCustomizePopup();
+
+  document
+    .getElementById("waFormOverlay")
+    .classList.remove("hidden");
+
+};
 
 // ===== WHATSAPP ORDER =====
 
 window.orderNow = function () {
 
-  // 1️⃣ Validate required product options first
-  const errors = validateRequiredSelections();
-  if (errors.length) {
-    showErrorModal(errors);
-    return;
-  }
+  renderCustomizePopup();
 
-  // 2️⃣ Open WhatsApp order form
-  document.getElementById("waFormOverlay").classList.remove("hidden");
+  document
+    .getElementById("customizeOverlay")
+    .classList.remove("hidden");
+
 };
 
 
@@ -472,7 +706,7 @@ window.submitWaOrder = async function () {
       await setDoc(counterRef, { current: nextNumber });
     }
 
-    const orderNumber = `SD-${nextNumber}`;
+    const orderNumber = `IG-${nextNumber}`;
 
     // ================= SAVE ORDER =================
     const orderData = {
@@ -521,7 +755,7 @@ window.submitWaOrder = async function () {
     await addDoc(collection(db, "orders"), orderData);
 
     // ================= WHATSAPP MESSAGE =================
-    let msg = `🛍 *New Order — Sellfix Designing*\n\n`;
+    let msg = `🛍 *New Order — Imaginary Gifts*\n\n`;
     msg += `🧾 *Order No:* ${orderNumber}\n\n`;
 
     msg += `👤 *Name:* ${name}\n`;
@@ -575,7 +809,7 @@ window.buyNow = function () {
 
   const errors = validateRequiredSelections();
   if (errors.length) {
-   showErrorModal(errors);
+    showErrorModal(errors);
     return;
   }
   const data = {
@@ -607,9 +841,9 @@ function showErrorModal(errors) {
     list.appendChild(li);
   });
 
-  modal.style.display = "flex";
+  modal.classList.remove("hidden");
 }
 
 window.closeErrorModal = function () {
-  document.getElementById("errorModal").style.display = "none";
+  document.getElementById("errorModal").classList.add("hidden");
 };
