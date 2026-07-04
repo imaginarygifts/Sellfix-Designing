@@ -78,6 +78,41 @@
 
 </div>
 
+<!-- ================= CUSTOMIZE PRODUCT POPUP ================= -->
+
+<div id="customizeOverlay" class="hidden">
+
+  <div class="customize-form">
+
+    <h3>Customize Your Product</h3>
+
+    <div id="customOptionsContainer"></div>
+
+    <div class="popup-price">
+
+      Total :
+      <span id="popupPrice">₹0</span>
+
+    </div>
+
+    <div class="wa-actions">
+
+      <button onclick="closeCustomizePopup()">
+        Cancel
+      </button>
+
+      <button onclick="nextToAddress()">
+        Next →
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
 <!-- WhatsApp Order Form -->
 <div id="waFormOverlay" class="hidden">
   <div class="wa-form">
@@ -88,12 +123,33 @@
     <textarea id="custAddress" placeholder="Full Address"></textarea>
     <input id="custPincode" placeholder="Pincode">
 
-    <div class="wa-actions">
-      <button onclick="closeWaForm()">Cancel</button>
-      <button onclick="submitWaOrder()">Continue to WhatsApp</button>
-    </div>
+  <div class="wa-actions">
+
+  <button onclick="backToCustomize()">
+    ← Back
+  </button>
+
+  <button onclick="submitWaOrder()">
+    Continue to WhatsApp
+  </button>
+
+</div>
   </div>
 </div>
+
+
+
+
+<div id="errorModal" class="error-modal hidden">
+  <div class="error-box">
+    <h3>Please Fill These First</h3>
+    <ul id="errorList"></ul>
+    <button onclick="closeErrorModal()">OK</button>
+  </div>
+</div>
+
+
+
 
 
 <div class="sticky-order">
@@ -110,18 +166,6 @@
 
 </div>
 </div>
-
-
-<div id="errorModal" style="display:none;" class="error-modal hidden">
-  <div class="error-box">
-    <h3>Please Fill These First</h3>
-    <ul id="errorList"></ul>
-    <button onclick="closeErrorModal()">OK</button>
-  </div>
-</div>
-
-
-
 
 <script type="module" src="js/product.js"></script>
 <script src="js/share.js"></script>
