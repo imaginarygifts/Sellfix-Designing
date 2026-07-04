@@ -91,9 +91,9 @@ document.querySelectorAll(".custom-input, .custom-select").forEach(el => {
 
 function updatePageMeta(product) {
 
-  const title = product.name || "Imaginary Gifts";
+  const title = product.name || "Sellfix Designing";
   const description =
-    product.description || "Check out this customized gift product";
+    product.description || "Check out this customized Name Plate";
   const image = product.images?.[0] || "";
   const url = window.location.href;
 
